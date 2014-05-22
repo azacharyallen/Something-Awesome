@@ -1,6 +1,7 @@
+<tbody>
 <tr>
-  <td style="border-right:grey 1px solid !important; width:200px;">
-    <strong><p style="margin-top:10px; color:black; font-size:125%;"><%= post.user.username %></p></strong>
+  <td style="border-right:grey 1px solid; width:200px; min-width:200px;">
+    <strong><p style="margin-top:5px; color:black; font-size:125%;"><%= post.user.username %></p></strong>
     <p><%= post.user.reg_date %></p>
     <%= image_tag post.user.avatar, style: "display: block; margin: auto;" %>
     <div style="min-height:20px;"></div>
@@ -10,17 +11,26 @@
     <div style="position:relative; height:100%; width:100%; display:inline-block">
       <%= simple_format post.body %>
 
+      <% if !post.edited.empty? %>
+      <p style="font-style:italic;"><%= post.edited %></p>
+      <% end -%>
+
+      <div style="position:absolute; bottom:0; left:0;">
+        @<%= post.created_at %>
+      </div>
       <div style="position:absolute; bottom:0; right:0;">
-        <% if (current_user == post.user) %>
-        <button type="button" class="btn btn-default btn-sm">
-          <span class="glyphicon glyphicon-edit"></span> Edit
-        </button>
-        <% else %>
-        <button type="button" class="btn btn-default btn-sm">
-          <span class="glyphicon glyphicon-new-window"></span> Quote
-        </button>
-        <% end -%>
+        <% if logged_in? %>
+          <% if (current_user == post.user || ["ADMINISTRATOR", "MODERATOR"].include?(current_user.role)) %>
+          <a href="<%= edit_post_url(post) %>" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-edit"></span> Edit
+          </a>
+          <% end %>
+          <button type="button" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-new-window"></span> Quote
+          </button>
+        <% end %>
       </div>
    </div>
   </td>
 </tr>
+</tbody>

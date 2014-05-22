@@ -13,7 +13,12 @@
   <div class="col-xs-10 col-xs-offset-1">
     <ul id="thread-list" class="list-group" style="margin: 0px; padding: 0px; list-style-type: none">
       <% @forum.post_threads.order(:updated_at).reverse_order.each do |thread| %>
-      <li class="list-group-item"><a href="<%= post_thread_url(thread) %>"><%= thread.title %></a></li>
+      <li class="list-group-item">
+        <a href="<%= post_thread_url(thread) %>">
+          <strong><%= thread.title %></strong>
+          <br> by: <%= thread.user.username %> </br>
+        </a>
+      </li>
       <% end -%>
     </ul>
   </div>

@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+before_action :ensure_login!, except: [:show, :index]
+
   def index
     #placeholder
   end
@@ -8,7 +10,6 @@ class PostsController < ApplicationController
   end
   
   def new
-    #placeholder
     @post = Post.new
   end
   
@@ -28,11 +29,19 @@ class PostsController < ApplicationController
   end
   
   def edit
-    #placeholder
+    @post = Post.find(params[:id])
   end
   
   def update
-    #placeholder
+    @post = Post.find(params[:id])
+    @post.edited = "Edited by #{current_user.username} at #{@post.updated_at}" 
+    if @post.update_attributes(post_params)
+      flash[:notice] = "Your post was edited!"
+      redirect_to post_thread_url(@post.post_thread_id)
+    else
+      flash[:errors] = @post.errors.full_messages
+      render :edit
+    end
   end
   
   def destroy

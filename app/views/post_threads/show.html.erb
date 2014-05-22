@@ -12,33 +12,37 @@
 <div class="row">
   <div class="col-xs-10 col-xs-offset-1">
 
-    <table class="table table-striped" style="margin-top:10px; margin-bottom=10px;">
+    <table class="table table-striped" style="margin:0;">
       <tr>
-        <td style="background-color:rgb(53,72,80); border-top:black 2px solid; border-bottom:black 2px solid;">
-        </td>
-        <td style="background-color:rgb(53,72,80); border-top:black 2px solid; border-bottom:black 2px solid;">
-          <button type="button" class="btn btn-default btn-small pull-right">
+        <td colspan="2" style="background-color:rgb(53,72,80); border-top:black 2px solid; border-bottom:black 2px solid;">
+          <a  href="<%= new_post_thread_post_url(@thread)%>" 
+              class="btn btn-default btn-small pull-right">
             <span class="glyphicon glyphicon-pencil"></span> Reply
-          </button>
-        </td>
-      </tr>
-
-      <% @thread.posts.each do |post| %>
-
-          <%= render partial: "posts/post", locals: {post: post} %>
-
-      <% end -%>
-
-      <tr>
-        <td style="background-color:rgb(53,72,80); border-top:black 2px solid; border-bottom:black 2px solid;">
-        </td>
-        <td style="background-color:rgb(53,72,80); border-top:black 2px solid; border-bottom:black 2px solid;">
-          <button type="button" class="btn btn-default btn-small pull-right">
-            <span class="glyphicon glyphicon-pencil"></span> Reply
-          </button>
+          </a>
         </td>
       </tr>
     </table>
+
+      <% @thread.posts.order(:id).each do |post| %>
+        <table  class="table table-striped" 
+                style="margin:0; border-bottom:rgb(250,250,250) 1px solid;">
+
+          <%= render partial: "posts/post", locals: {post: post} %>
+          
+        </table>
+      <% end -%>
+
+    <table class="table table-striped" style="margin:0;">
+      <tr>
+        <td colspan="2" style="background-color:rgb(53,72,80); border-top:black 2px solid; border-bottom:black 2px solid;">
+          <a  href="<%= new_post_thread_post_url(@thread)%>" 
+              class="btn btn-default btn-small pull-right">
+            <span class="glyphicon glyphicon-pencil"></span> Reply
+          </a>
+        </td>
+      </tr>
+    </table>
+
   </div>
 </div>
 
