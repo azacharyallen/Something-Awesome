@@ -5,19 +5,39 @@
       <li><a href="<%= section_url(@thread.forum.section) %>"><%= @thread.forum.section.name %></a></li>
       <li><a href="<%= forum_url(@thread.forum) %>"><%= @thread.forum.name %></a></li>
       <li class="active"><%= @thread.title %></li>
-      <p class="pull-right"><a href="<%=new_post_thread_post_url(@thread)%>"> Post </a></p>
     </ol>
   </div>
 </div>
 
 <div class="row">
   <div class="col-xs-10 col-xs-offset-1">
+
     <table class="table table-striped" style="margin-top:10px; margin-bottom=10px;">
+      <tr>
+        <td style="background-color:rgb(53,72,80); border-top:black 2px solid; border-bottom:black 2px solid;">
+        </td>
+        <td style="background-color:rgb(53,72,80); border-top:black 2px solid; border-bottom:black 2px solid;">
+          <button type="button" class="btn btn-default btn-small pull-right">
+            <span class="glyphicon glyphicon-pencil"></span> Reply
+          </button>
+        </td>
+      </tr>
+
       <% @thread.posts.each do |post| %>
 
           <%= render partial: "posts/post", locals: {post: post} %>
 
       <% end -%>
+
+      <tr>
+        <td style="background-color:rgb(53,72,80); border-top:black 2px solid; border-bottom:black 2px solid;">
+        </td>
+        <td style="background-color:rgb(53,72,80); border-top:black 2px solid; border-bottom:black 2px solid;">
+          <button type="button" class="btn btn-default btn-small pull-right">
+            <span class="glyphicon glyphicon-pencil"></span> Reply
+          </button>
+        </td>
+      </tr>
     </table>
   </div>
 </div>

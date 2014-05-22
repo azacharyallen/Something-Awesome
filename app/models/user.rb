@@ -34,4 +34,8 @@ class User < ActiveRecord::Base
   def ensure_session_token
     self.session_token ||= SecureRandom.hex
   end
+
+  def reg_date
+    self.created_at.to_date
+  end
 end
