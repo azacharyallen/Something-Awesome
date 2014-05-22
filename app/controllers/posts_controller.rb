@@ -18,6 +18,7 @@ class PostsController < ApplicationController
     @post.post_thread_id = params[:post_thread_id]
 
     if @post.save
+      @post.post_thread.touch
       flash[:notice] = "WOOOOOOO, YOU POSTED"
       redirect_to post_thread_url(params[:post_thread_id])
     else

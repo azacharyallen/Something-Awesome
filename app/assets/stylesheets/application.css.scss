@@ -15,3 +15,23 @@
  */
 
  @import "bootstrap";
+
+body {
+	background-color: rgb(28,37,42);
+}
+
+#sign-up-button:hover{
+	background-color:orange;
+}
+
+.breadcrumb {
+	margin-bottom:0;
+}
+
+.table-striped>tbody>tr:nth-child(even)>td{
+	background-color:rgb(232,232,232);
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td{
+	background-color:rgb(224,224,224);
+}

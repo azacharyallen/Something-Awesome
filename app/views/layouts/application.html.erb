@@ -8,7 +8,7 @@
 
 <script>
   function displayError(message) {
-    var $error = "<div class='alert alert-warning alert-dismissable'>\
+    var $error = "<div class='alert alert-danger alert-dismissable'>\
     <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>\
     <strong>"+ message + "</strong></div>"
 
@@ -40,6 +40,7 @@
           location.reload(true);
         },
         error: function(response){
+          $('#login-form').trigger("reset");
           displayError("Invalid Username and/or Password");
         },
       });
@@ -51,8 +52,8 @@
         url: "/session",
         method: "DELETE",
         complete: function(response){
+          //show goodbye message here
           location.reload(true);
-          displayMessage("Goodbye!");
         },
       })
     });
@@ -107,8 +108,8 @@
         <% else %>
           <ul class="nav navbar-nav navbar-right">
             <li><%= render partial: "sessions/form" %></li>
-            <li><p class="navbar-text">|</p></li>  
-            <li><a href="/users/new">Sign Up</a></li>  
+            <li><p class="navbar-text"><strong>or</strong></p></li>  
+            <li><a id="sign-up-button" href="/users/new" class="btn btn-primary" style="color:white;">Sign Up</a></li> 
           </ul>
         <% end %>
     </div> <!-- Collapsable Nav -->
