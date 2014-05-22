@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: forums
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)      not null
+#  rank       :integer          not null
+#  section_id :integer          not null
+#  created_at :datetime
+#  updated_at :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  rank: 1
+  section_id: 
+
+two:
+  name: MyString
+  rank: 1
+  section_id: 

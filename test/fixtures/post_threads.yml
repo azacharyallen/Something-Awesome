@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: post_threads
+#
+#  id         :integer          not null, primary key
+#  title      :string(255)      not null
+#  user_id    :integer          not null
+#  forum_id   :integer          not null
+#  created_at :datetime
+#  updated_at :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  user_id: 
+  forum_id: 
+
+two:
+  title: MyString
+  user_id: 
+  forum_id: 
