@@ -35,7 +35,16 @@ class PostThreadsController < ApplicationController
   end
   
   def update
-    #placeholder
+    @post_thread = PostThread.find(params[:id])
+
+    if @post_thread.update_attributes(post_thread_params)
+      flash[:notice] = "Thread updated, thanks!"
+      # redirect_to post_thread_url(@post_thread)
+      return head :ok
+    else
+      flash[:errors] = @post_thread.errors.full_messages
+      return head 303
+    end
   end
   
   def destroy
@@ -44,7 +53,7 @@ class PostThreadsController < ApplicationController
 
   private
   def post_thread_params
-    params.require(:post_thread).permit(:title)
+    params.require(:post_thread).permit(:title, :closed)
   end
   def post_params
     params.require(:post).permit(:body)

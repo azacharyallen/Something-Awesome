@@ -1,55 +1,21 @@
-<div class="row">
-  <div class="col-xs-10 col-xs-offset-1">
-    <ol class="breadcrumb">
-      <li><a href="/">Home</a></li>
-      <li><a href="<%= section_url(@thread.forum.section) %>"><%= @thread.forum.section.name %></a></li>
-      <li><a href="<%= forum_url(@thread.forum) %>"><%= @thread.forum.name %></a></li>
-      <li class="active"><%= @thread.title %></li>
-    </ol>
-  </div>
-</div>
+<%= render partial: "post_threads/breadcrumb" %>
 
 <div class="row">
   <div class="col-xs-10 col-xs-offset-1">
 
-    <table class="table table-striped" style="margin:0;">
-      <tr>
-        <td colspan="2" style="background-color:rgb(53,72,80); border-top:black 2px solid; border-bottom:black 2px solid;">
-          <a  href="<%= new_post_thread_post_url(@thread)%>" 
-              class="btn btn-default btn-small pull-right">
-            <span class="glyphicon glyphicon-pencil"></span> Reply
-          </a>
-        </td>
-      </tr>
-    </table>
+    <%= render partial: "post_threads/headerfooter" %>
 
-      <% @thread.posts.sort_by(&:id).each do |post| %>
+    <!-- POSTS GO HERE -->
+    <% @thread.posts.sort_by(&:id).each do |post| %>
 
-          <%= render partial: "posts/post", locals: {post: post} %>
-          
-      <% end -%>
+        <%= render partial: "posts/post", locals: {post: post} %>
+        
+    <% end -%>
+    <!-- END POSTS -->
 
-    <table class="table table-striped" style="margin:0;">
-      <tr>
-        <td colspan="2" style="background-color:rgb(53,72,80); border-top:black 2px solid; border-bottom:black 2px solid;">
-          <a  href="<%= new_post_thread_post_url(@thread)%>" 
-              class="btn btn-default btn-small pull-right">
-            <span class="glyphicon glyphicon-pencil"></span> Reply
-          </a>
-        </td>
-      </tr>
-    </table>
+    <%= render partial: "post_threads/headerfooter" %>
 
   </div>
 </div>
 
-<div class="row">
-  <div class="col-xs-10 col-xs-offset-1">
-    <ol class="breadcrumb">
-      <li><a href="/">Home</a></li>
-      <li><a href="<%= section_url(@thread.forum.section) %>"><%= @thread.forum.section.name %></a></li>
-      <li><a href="<%= forum_url(@thread.forum) %>"><%= @thread.forum.name %></a></li>
-      <li class="active"><%= @thread.title %></li>
-    </ol>
-  </div>
-</div>
+<%= render partial: "post_threads/breadcrumb" %>

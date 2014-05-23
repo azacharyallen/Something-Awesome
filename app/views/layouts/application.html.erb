@@ -93,6 +93,40 @@
         },
       });
     });
+
+    $('.close-thread-button').click(function(event){
+      event.preventDefault();
+      // alert("Closing thread!");
+      var id = event.currentTarget.dataset.id;
+      $.ajax({
+        url: "/post_threads/" + id,
+        method: "PATCH",
+        data: {post_thread: {closed: true}},
+        success: function(response) {
+          location.reload(true);
+        },
+        error: function(response) {
+          location.reload(true);
+        }
+      });
+    });
+
+    $('.open-thread-button').click(function(event){
+      event.preventDefault();
+      // alert("Closing thread!");
+      var id = event.currentTarget.dataset.id;
+      $.ajax({
+        url: "/post_threads/" + id,
+        method: "PATCH",
+        data: {post_thread: {closed: false}},
+        success: function(response) {
+          location.reload(true);
+        },
+        error: function(response) {
+          location.reload(true);
+        }
+      });
+    });
   });
 </script>
 

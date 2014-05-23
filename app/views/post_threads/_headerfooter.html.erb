@@ -1,0 +1,37 @@
+    <table class="table table-striped" style="margin:0;">
+      <tr>
+        <td colspan="2" style="background-color:rgb(53,72,80); border-top:black 2px solid; border-bottom:black 2px solid;">
+          <% if @thread.closed %>
+            <a href="#" class="btn btn-default btn-sm pull-right">
+              <span class="glyphicon glyphicon-ban-circle"></span> Closed 
+            </a>
+
+            <% if logged_in? && (
+                  current_user == @thread.user || 
+                  ["ADMINISTRATOR", "MODERATOR"].include?(current_user.role)) %>
+              <a  href="#" 
+                  class="bnt btn-default btn-sm pull-left open-thread-button" 
+                  data-id="<%= @thread.id %>">
+                <span class="glyphicon glyphicon-ok"></span> Re-Open
+              </a>
+            <% end -%>
+
+          <% else %>
+            <a  href="<%= new_post_thread_post_url(@thread)%>" 
+                class="btn btn-default btn-sm pull-right">
+              <span class="glyphicon glyphicon-pencil"></span> Reply
+            </a>
+
+            <% if logged_in? && (
+                  current_user == @thread.user || 
+                  ["ADMINISTRATOR", "MODERATOR"].include?(current_user.role)) %>
+              <a  href="#" 
+                  class="bnt btn-default btn-sm pull-left close-thread-button" 
+                  data-id="<%= @thread.id %>">
+                <span class="glyphicon glyphicon-remove"></span> Close
+              </a>
+            <% end -%>
+          <% end -%>
+        </td>
+      </tr>
+    </table>
