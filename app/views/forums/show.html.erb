@@ -4,6 +4,9 @@
       <li><a href="/">Home</a></li>
       <li><a href="<%= section_url(@forum.section) %>"><%= @forum.section.name %></a></li>
       <li class="active"><%= @forum.name %></li>
+      <div class="pull-right">
+      <%= paginate @threads  %>
+    </div>
     </ol>
   </div>
 </div>
@@ -14,47 +17,19 @@
     <table class="table table-striped" style="margin:0;">
       <tr>
         <td colspan="2" style="background-color:rgb(53,72,80); border-top:black 2px solid; border-bottom:black 2px solid;">
+        
           <a  href="<%=new_forum_post_thread_url(@forum)%>" 
               class="btn btn-default btn-small pull-right">
             <span class="glyphicon glyphicon-pencil"></span> Post
           </a>
+
         </td>
       </tr>
     </table>
 
+
     <!-- THREADS GO HERE -->
-    <table class="table table-striped" style="margin:0;">
-      <% @forum.post_threads.sort_by(&:updated_at).reverse.each do |thread| %>
-        <tr>
-          <td style="width:25px;">
-            <!-- BOOKMARK BUTTONS -->
-            <% if logged_in? %>
-              <% if @bookmarks.include?(thread.id) %>            
-              <a href="#" class="bookmark-button" data-state="marked" data-thread-id="<%= thread.id %>">
-                <span class="glyphicon glyphicon-star" style="font-size:18pt;"></span>
-              </a>
-              <% else %>
-              <a href="#" class="bookmark-button" data-state="unmarked" data-thread-id="<%= thread.id %>">
-                <span class="glyphicon glyphicon-star-empty" style="font-size:18pt;"></span>
-              </a>
-              <% end -%>
-            <% end -%>
-          </td>
-          <!-- THREAD TITLE -->
-          <td style="font-weight:bold; vertical-align:middle;">
-            <a href="<%= post_thread_url(thread) %>">
-              <%= thread.title %> 
-            </a>
-          </td>
-          <td>
-            <!-- THREAD AUTHOR -->
-            <a href="<%= user_url(thread.user) %>">
-              <%= thread.user.username %>
-            </a>
-          </td>
-        </tr>
-      <% end -%>
-    </table>
+    <%= render partial: "post_threads/list" %>
 
     <table class="table table-striped" style="margin:0;">
       <tr>

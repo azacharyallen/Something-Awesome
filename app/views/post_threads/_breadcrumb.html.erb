@@ -5,6 +5,9 @@
       <li><a href="<%= section_url(@thread.forum.section) %>"><%= @thread.forum.section.name %></a></li>
       <li><a href="<%= forum_url(@thread.forum) %>"><%= @thread.forum.name %></a></li>
       <li class="active"><%= @thread.title %></li>
+      <div class="pull-right">
+        <%= paginate @posts  %>
+      </div>
     </ol>
   </div>
 </div>

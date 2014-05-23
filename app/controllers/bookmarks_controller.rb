@@ -2,7 +2,8 @@ class BookmarksController < ApplicationController
   before_action :ensure_login!
   
   def index
-    @threads = current_user.bookmarked_threads.order(:updated_at).reverse_order
+    @threads = current_user.bookmarked_threads.order(:updated_at).reverse_order.page(params[:page] || 1)
+    # @threads = PostThread.page(1)
     @bookmarks = logged_in? ? current_user.bookmarked_threads.pluck(:id) : []
   end
   

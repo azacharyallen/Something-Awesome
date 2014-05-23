@@ -17,7 +17,16 @@ gc = main.forums.create!(name: "General Crap", rank: 1)
 sscs = discussion.forums.create!(name: "Super Serious Computer Stuff", rank: 1)
 sf = discussion.forums.create!(name: "San Francisco", rank: 2)
 
+threadPrime = gc.post_threads.create!(title: "A Super Awesome Thread", user: sa1)
+
 (1..100).each do |i|
   gc.post_threads.create!(title: "A Super Thread ##{i}", user: sa1)
 end
 
+(101..200).each do |i|
+  sscs.post_threads.create!(title: "A Super Thread ##{i}", user: sa2)
+end
+
+(1..200).each do |i|
+  threadPrime.posts.create!(body: "I'm a super awesome post ##{i}!", user: sa1)
+end

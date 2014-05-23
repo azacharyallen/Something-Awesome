@@ -1,3 +1,33 @@
-<% @posts.order(:id).reverse_order.each do |post| %>
-  <%= render partial: "posts/post", locals: {post: post} %>
-<% end -%>
+<div class="row">
+  <div class="col-xs-10 col-xs-offset-1">
+    <ol class="breadcrumb">
+      <li><a href="/">Home</a></li>
+      <li><a href="<%= user_url(@user) %>"><%= @user.username %></a></li>
+      <li class="active"><%= @user.username %>'s Posts</li>
+      <div class="pull-right">
+        <%= paginate @posts  %>
+      </div>
+    </ol>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-10 col-xs-offset-1">
+    <% @posts.each do |post| %>
+      <%= render partial: "posts/post", locals: {post: post} %>
+    <% end -%>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-10 col-xs-offset-1">
+    <ol class="breadcrumb">
+      <li><a href="/">Home</a></li>
+      <li><a href="<%= user_url(@user) %>"><%= @user.username %></a></li>
+      <li class="active"><%= @user.username %>'s Posts</li>
+      <div class="pull-right">
+        <%= paginate @posts  %>
+      </div>
+    </ol>
+  </div>
+</div>

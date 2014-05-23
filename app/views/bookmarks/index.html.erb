@@ -1,55 +1,27 @@
 <div class="row">
   <div class="col-xs-10 col-xs-offset-1">
 
-    <table class="table table-striped" style="margin:0;">
-      <tr>
-        <td colspan="2" style="background-color:rgb(53,72,80); border-top:black 2px solid; border-bottom:black 2px solid;">
-        </td>
-      </tr>
-    </table>
+    <ol class="breadcrumb">
+      <li><a href="/">Home</a></li>
+      <li class="active">Bookmarks</li>
+      <div class="pull-right">
+      <%= paginate @threads  %>
+    </div>
+    </ol>
 
-    <table class="table table-striped" style="margin:0;">
-      <% if @threads.empty? %>
+    <% if @threads.empty? %>
       <h1 class="jumbotron text-center">You have no bookmarks, how sad :( </h1>
-      <% end -%>
-      <% @threads.sort_by(&:updated_at).reverse.each do |thread| %>
-        <tr>
-          <td style="width:25px;">
-            <!-- BOOKMARK BUTTONS -->
-            <% if logged_in? %>
-              <% if @bookmarks.include?(thread.id) %>            
-              <a href="#" class="bookmark-button" data-state="marked" data-thread-id="<%= thread.id %>">
-                <span class="glyphicon glyphicon-star" style="font-size:18pt;"></span>
-              </a>
-              <% else %>
-              <a href="#" class="bookmark-button" data-state="unmarked" data-thread-id="<%= thread.id %>">
-                <span class="glyphicon glyphicon-star-empty" style="font-size:18pt;"></span>
-              </a>
-              <% end -%>
-            <% end -%>
-          </td>
-          <td style="font-weight:bold; vertical-align:middle;">
-            <a href="<%= post_thread_url(thread) %>">
-              <%= thread.title %> 
-            </a>
-          </td>
-          <td>
-            <a href="<%= user_url(thread.user) %>">
-              <%= thread.user.username %>
-            </a>
-          </td>
-        </tr>
-      <% end -%>
-    </table>
-
-    <table class="table table-striped" style="margin:0;">
-      <tr>
-        <td colspan="2" style="background-color:rgb(53,72,80); border-top:black 2px solid; border-bottom:black 2px solid;">
-
-        </td>
-      </tr>
-    </table>
-
+    <% else %>
+      <%= render partial: "post_threads/list" %>
+    <% end -%>
+    
+    <ol class="breadcrumb">
+      <li><a href="/">Home</a></li>
+      <li class="active">Bookmarks</li>
+      <div class="pull-right">
+      <%= paginate @threads  %>
+    </div>
+    </ol>
 
   </div>
 </div>

@@ -3,7 +3,7 @@ before_action :ensure_login!, except: [:show, :index]
 
   def index
     @user = User.find(params[:user_id])
-    @posts = Post.includes(:user).where(user_id: @user.id)
+    @posts = Post.includes(:user).where(user_id: @user.id).order(:id).reverse_order.page(params[:page] || 1)
   end
   
   def show

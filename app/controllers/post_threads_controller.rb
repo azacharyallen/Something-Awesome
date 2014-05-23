@@ -2,11 +2,14 @@ class PostThreadsController < ApplicationController
   before_action :ensure_login!, except: [:show]
 
   def index
+    fail
     @threads = current_user.bookmarked_threads.order(:updated_at).reverse_order
+    # @threads = PostThread.page(1)
   end
   
   def show
-    @thread = PostThread.includes(posts: :user, forum: :section).find(params[:id])
+    @thread = PostThread.includes(forum: :section).find(params[:id])
+    @posts = Post.includes(:user).where(post_thread_id: params[:id]).order(:id).page(params[:page] || 1)
   end
   
   def new
