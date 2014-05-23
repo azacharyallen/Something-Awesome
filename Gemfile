@@ -41,6 +41,8 @@ gem 'rails_12factor', group: :production
 
 gem 'figaro'
 
+gem 'kaminari'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
