@@ -20,7 +20,7 @@
                     id="post_body" 
                     name="post[body]" 
                     value=""
-                    placeholder="A Super Awesome Post"></textarea>
+                    placeholder="A Super Awesome Post"><%=@post.body unless @post.body.empty?%></textarea>
             </div>
           </div>
 

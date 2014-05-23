@@ -11,7 +11,12 @@ before_action :ensure_login!, except: [:show, :index]
   end
   
   def new
-    @post = Post.new
+    @post = Post.new()
+
+    if params[:quote]
+      quoted_post = Post.find(params[:quote])
+      @post.body = "<i>#{quoted_post.user.username}</i> said:\n <blockquote>" + quoted_post.body + "</blockquote>\n" 
+    end
   end
   
   def create

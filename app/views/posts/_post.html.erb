@@ -54,9 +54,10 @@
             <span class="glyphicon glyphicon-edit"></span> Edit
           </a>
           <% end %>
-          <button type="button" class="btn btn-default btn-sm">
+          <a  href='<%= new_post_thread_post_url(@thread) + "?quote=#{post.id}" %>'
+              class="btn btn-default btn-sm">
             <span class="glyphicon glyphicon-new-window"></span> Quote
-          </button>
+          </a>
         <% end %>
       </div>
    </div>

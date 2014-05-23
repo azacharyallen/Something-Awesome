@@ -36,10 +36,6 @@ body {
 	background-color:rgb(224,224,224);
 }
 
-.thread-table a{
-	/*color:rgb(100,100,100);*/
-}
-
 a:hover {
 	background-color: inherit;
 }
@@ -47,4 +43,8 @@ a:hover {
 .thread-table a:hover{
 	background-color:inherit;
 	color:inherit;
+}
+
+.thread-table tr:hover td{
+	background-color: rgb(210,210,210) !important;
 }
