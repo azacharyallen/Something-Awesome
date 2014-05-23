@@ -9,7 +9,7 @@
     </table>
 
     <table class="table table-striped" style="margin:0;">
-      <% @threads.order(:updated_at).reverse_order.each do |thread| %>
+      <% @threads.sort_by(&:updated_at).reverse.each do |thread| %>
         <tr>
           <td style="width:25px;">
             <a href="#" class="bookmark-button" data-thread-id="<%= thread.id %>">

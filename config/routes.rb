@@ -19,6 +19,5 @@ Rails.application.routes.draw do
 
   resource :session, only: [:new, :create, :destroy]
 
-  get "/bookmarks", to: "bookmarks#index"
-  post "/bookmarks", to: "bookmarks#create"
+  resources :bookmarks, only: [:index, :create, :destroy]
 end

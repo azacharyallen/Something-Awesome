@@ -6,7 +6,7 @@ class PostThreadsController < ApplicationController
   end
   
   def show
-    @thread = PostThread.includes(posts: :user).find(params[:id])
+    @thread = PostThread.includes(posts: :user, forum: :section).find(params[:id])
   end
   
   def new
