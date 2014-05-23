@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: "sections#index"
 
-  resources :users, only: [:show, :new, :create] do
+  resources :users, only: [:show, :new, :create, :edit, :update] do
     resources :posts, only: [:index]
   end
 

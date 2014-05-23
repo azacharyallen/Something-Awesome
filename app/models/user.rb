@@ -14,7 +14,7 @@
 #
 
 class User < ActiveRecord::Base
-  validates :username, :email, :session_token, :password_digest, presence: true
+  validates :username, :session_token, :password_digest, presence: true
   validates :username, :session_token, uniqueness: true
   validates :role, inclusion: {in: %w(USER MODERATOR ADMINISTRATOR)}
 
