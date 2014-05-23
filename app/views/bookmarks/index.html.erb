@@ -12,9 +12,15 @@
       <% @threads.sort_by(&:updated_at).reverse.each do |thread| %>
         <tr>
           <td style="width:25px;">
+            <% if @bookmarks.include?(thread.id) %>                      
             <a href="#" class="bookmark-button" data-thread-id="<%= thread.id %>">
+              <span class="glyphicon glyphicon-star" style="font-size:18pt;"></span>
+            </a>
+            <% else %>
+            <a href="#" class="unbookmark-button" data-thread-id="<%= thread.id %>">
               <span class="glyphicon glyphicon-star-empty" style="font-size:18pt;"></span>
             </a>
+            <% end -%>
           </td>
           <td style="font-weight:bold; vertical-align:middle;">
             <a href="<%= post_thread_url(thread) %>">

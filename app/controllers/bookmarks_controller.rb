@@ -3,6 +3,7 @@ class BookmarksController < ApplicationController
   
   def index
     @threads = current_user.bookmarked_threads.order(:updated_at).reverse_order
+    @bookmarks = logged_in? ? current_user.bookmarked_threads.pluck(:id) : []
   end
   
   def show

@@ -5,6 +5,7 @@ class ForumsController < ApplicationController
   
   def show
     @forum = Forum.includes(:post_threads).find(params[:id])
+    @bookmarks = logged_in? ? current_user.bookmarked_threads.pluck(:id) : []
   end
   
   def new
