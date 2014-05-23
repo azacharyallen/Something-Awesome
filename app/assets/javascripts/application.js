@@ -15,3 +15,141 @@
 //= require bootstrap
 //= require serializeJSON
 //= require_tree .
+
+  function displayError(message) {
+    var $error = "<div class='alert alert-danger alert-dismissable'>\
+    <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>\
+    <strong>"+ message + "</strong></div>";
+
+    if ($('.alert').length === 1) {
+      $('.alert').replaceWith($error);
+    } else {
+      $('body').prepend($error);
+    }
+
+  }
+
+  function displayMessage(message) {
+        var $message = "<div class='alert alert-info alert-dismissable'>\
+    <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>\
+    <strong>"+ message + "</strong></div>";
+
+    $('body').prepend($message);
+  }
+
+  $(document).ready(function(){
+    $('#login-form').submit(function(event){
+      event.preventDefault();
+      var loginData = $(event.target).serializeJSON();
+      $.ajax({
+        url: "/session",
+        method: "POST",
+        data: loginData,
+        success: function(response){
+          location.reload(true);
+        },
+        error: function(response){
+          $('#login-form').trigger("reset");
+          displayError("Invalid Username and/or Password");
+        },
+      });
+    });
+
+    $('#sign-out-button').click(function(event){
+      event.preventDefault();
+      $.ajax({
+        url: "/session",
+        method: "DELETE",
+        complete: function(response){
+          //show goodbye message here
+          location.reload(true);
+        },
+      });
+    });
+
+    $('.bookmark-button').click(function(event){
+      event.preventDefault();
+      // alert("Bookmarking a thread!");
+      var state = event.currentTarget.dataset.state;
+      var targetThread = event.currentTarget.dataset.threadId;
+      
+      if (state === "unmarked") {
+        $.ajax({
+          url: "/bookmarks",
+          method: "POST",
+          data: {bookmark: {post_thread_id: targetThread}},
+          success: function(response){
+            $(event.target).toggleClass("glyphicon-star-empty glyphicon-star");
+            $(event.target.parentElement).attr("data-state", "marked");
+          },
+          error: function(response){
+            alert("Oh No!");
+          },
+        });
+      } else {
+        $.ajax({
+        url: "/bookmarks/" + targetThread,
+        method: "DELETE",
+        success: function(response){
+          $(event.target).toggleClass("glyphicon-star-empty glyphicon-star");
+          $(event.target.parentElement).attr("data-state", "unmarked");
+        },
+        error: function(response){
+          alert("Oh No!");
+        },
+      });
+      }
+    });
+
+    $('.unbookmark-button').click(function(event){
+      event.preventDefault();
+      // alert("Bookmarking a thread!");
+      var targetThread = event.currentTarget.dataset.threadId;
+      alert("UNBOOKMARKING");
+      $.ajax({
+        url: "/bookmarks/" + targetThread,
+        method: "DELETE",
+        success: function(response){
+          $(event.target).toggleClass("glyphicon-star-empty glyphicon-star");
+          $(event.target.parentElement).toggleClass("unbookmark-button bookmark-button");
+        },
+        error: function(response){
+          alert("Oh No!");
+        },
+      });
+    });
+
+    $('.close-thread-button').click(function(event){
+      event.preventDefault();
+      // alert("Closing thread!");
+      var id = event.currentTarget.dataset.id;
+      $.ajax({
+        url: "/post_threads/" + id,
+        method: "PATCH",
+        data: {post_thread: {closed: true}},
+        success: function(response) {
+          location.reload(true);
+        },
+        error: function(response) {
+          location.reload(true);
+        }
+      });
+    });
+
+    $('.open-thread-button').click(function(event){
+      event.preventDefault();
+      // alert("Closing thread!");
+      var id = event.currentTarget.dataset.id;
+      $.ajax({
+        url: "/post_threads/" + id,
+        method: "PATCH",
+        data: {post_thread: {closed: false}},
+        success: function(response) {
+          location.reload(true);
+        },
+        error: function(response) {
+          location.reload(true);
+        }
+      });
+    });
+  });

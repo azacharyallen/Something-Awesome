@@ -7,127 +7,7 @@
   <%= csrf_meta_tags %>
 
 <script>
-  function displayError(message) {
-    var $error = "<div class='alert alert-danger alert-dismissable'>\
-    <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>\
-    <strong>"+ message + "</strong></div>"
 
-    if ($('.alert').length === 1) {
-      $('.alert').replaceWith($error);
-    } else {
-      $('body').prepend($error);
-    };
-
-  }
-
-  function displayMessage(message) {
-        var $message = "<div class='alert alert-info alert-dismissable'>\
-    <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>\
-    <strong>"+ message + "</strong></div>"
-
-    $('body').prepend($message);
-  }
-
-  $(document).ready(function(){
-    $('#login-form').submit(function(event){
-      event.preventDefault();
-      var loginData = $(event.target).serializeJSON()
-      $.ajax({
-        url: "/session",
-        method: "POST",
-        data: loginData,
-        success: function(response){
-          location.reload(true);
-        },
-        error: function(response){
-          $('#login-form').trigger("reset");
-          displayError("Invalid Username and/or Password");
-        },
-      });
-    });
-
-    $('#sign-out-button').click(function(event){
-      event.preventDefault();
-      $.ajax({
-        url: "/session",
-        method: "DELETE",
-        complete: function(response){
-          //show goodbye message here
-          location.reload(true);
-        },
-      })
-    });
-
-    $('.bookmark-button').click(function(event){
-      event.preventDefault();
-      // alert("Bookmarking a thread!");
-      var targetThread = event.currentTarget.dataset.threadId
-
-      $.ajax({
-        url: "/bookmarks",
-        method: "POST",
-        data: {bookmark: {post_thread_id: targetThread}},
-        success: function(response){
-          alert("Success!");
-        },
-        error: function(response){
-          alert("Oh No!");
-        },
-      });
-    });
-
-    $('.unbookmark-button').click(function(event){
-      event.preventDefault();
-      // alert("Bookmarking a thread!");
-      var targetThread = event.currentTarget.dataset.threadId
-
-      $.ajax({
-        url: "/bookmarks",
-        method: "DELETE",
-        data: {bookmark: {post_thread_id: targetThread}},
-        success: function(response){
-          alert("Success!");
-        },
-        error: function(response){
-          alert("Oh No!");
-        },
-      });
-    });
-
-    $('.close-thread-button').click(function(event){
-      event.preventDefault();
-      // alert("Closing thread!");
-      var id = event.currentTarget.dataset.id;
-      $.ajax({
-        url: "/post_threads/" + id,
-        method: "PATCH",
-        data: {post_thread: {closed: true}},
-        success: function(response) {
-          location.reload(true);
-        },
-        error: function(response) {
-          location.reload(true);
-        }
-      });
-    });
-
-    $('.open-thread-button').click(function(event){
-      event.preventDefault();
-      // alert("Closing thread!");
-      var id = event.currentTarget.dataset.id;
-      $.ajax({
-        url: "/post_threads/" + id,
-        method: "PATCH",
-        data: {post_thread: {closed: false}},
-        success: function(response) {
-          location.reload(true);
-        },
-        error: function(response) {
-          location.reload(true);
-        }
-      });
-    });
-  });
 </script>
 
 </head>
@@ -166,9 +46,10 @@
         <% if logged_in? %>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.username %> <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <p style="font-size:125%;"><%= current_user.username %></strong> <b class="caret"></b></p></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Bookmarks</a></li>
+                <li><a href="/bookmarks">Bookmarks</a></li>
                 <li><a href="<%= user_url(current_user) %>">Profile</a></li>
                 <li class="divider"></li>
                 <li><%= link_to 'Sign Out', '#', id: 'sign-out-button' %></li>
@@ -187,6 +68,7 @@
   </div> <!-- container-fluid -->
 </nav> <!-- navbar -->
 
+<!-- CONTENT GOES HERE -->
 <div class="container">
 <%= yield %>
 </div>

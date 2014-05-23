@@ -34,12 +34,15 @@ class BookmarksController < ApplicationController
   end
   
   def destroy
-    post_thread_id = params(:bookmark[:post_thread_id])
+    post_thread_id = params[:id]
     user_id = current_user.id
-    @bookmark = Bookmark.where(post_thread_id: post_thread_id, user_id: user_id)
+    @bookmark = Bookmark.where(post_thread_id: post_thread_id, user_id: user_id).first
 
-    @bookmark.try(:destroy)
-    return head :ok
+    if @bookmark.try(:destroy)
+      return head :ok
+    else
+      return head 303
+    end
   end
   
   private
