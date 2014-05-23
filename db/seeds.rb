@@ -20,13 +20,25 @@ sf = discussion.forums.create!(name: "San Francisco", rank: 2)
 threadPrime = gc.post_threads.create!(title: "A Super Awesome Thread", user: sa1)
 
 (1..100).each do |i|
-  gc.post_threads.create!(title: "A Super Thread ##{i}", user: sa1)
+  if i.odd?
+    gc.post_threads.create!(title: "A Super Thread ##{i}", user: sa1)
+  else
+    gc.post_threads.create!(title: "A Super Thread ##{i}", user: sa2)
+  end
 end
 
 (101..200).each do |i|
-  sscs.post_threads.create!(title: "A Super Thread ##{i}", user: sa2)
+  if i.odd?
+    gc.post_threads.create!(title: "A Super Thread ##{i}", user: sa1)
+  else
+    gc.post_threads.create!(title: "A Super Thread ##{i}", user: sa2)
+  end
 end
 
 (1..200).each do |i|
-  threadPrime.posts.create!(body: "I'm a super awesome post ##{i}!", user: sa1)
+  if i.odd?
+    threadPrime.posts.create!(body: "I'm a super awesome post ##{i}!", user: sa1)
+  else
+    threadPrime.posts.create!(body: "I'm a super awesome post ##{i}!", user: sa2)
+  end
 end

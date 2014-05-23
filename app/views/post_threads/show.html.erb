@@ -7,11 +7,15 @@
 
     <!-- POSTS GO HERE -->
     <%# @thread.posts.sort_by(&:id).each do |post| %>
-    <% @posts.each do |post| %>
+    <div id="posts-list">
+    <%# @posts.each do |post| %>
 
-        <%= render partial: "posts/post", locals: {post: post} %>
+        <%#= render partial: "posts/post", locals: {post: post} %>
         
-    <% end -%>
+    <%# end -%>
+    <%= render @posts %>
+    </div>
+
     <!-- END POSTS -->
 
     <%= render partial: "post_threads/headerfooter" %>

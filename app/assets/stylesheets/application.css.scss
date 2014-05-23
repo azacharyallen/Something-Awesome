@@ -35,3 +35,16 @@ body {
 .table-striped>tbody>tr:nth-child(odd)>td{
 	background-color:rgb(224,224,224);
 }
+
+.thread-table a{
+	/*color:rgb(100,100,100);*/
+}
+
+a:hover {
+	background-color: inherit;
+}
+
+.thread-table a:hover{
+	background-color:inherit;
+	color:inherit;
+}
