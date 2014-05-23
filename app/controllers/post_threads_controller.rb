@@ -1,8 +1,8 @@
 class PostThreadsController < ApplicationController
-  before_action :ensure_login!, except: [:show, :index]
+  before_action :ensure_login!, except: [:show]
 
   def index
-    #placeholder
+    @threads = current_user.bookmarked_threads.order(:updated_at).reverse_order
   end
   
   def show

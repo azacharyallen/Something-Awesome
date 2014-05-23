@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140522215455) do
+ActiveRecord::Schema.define(version: 20140523002050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookmarks", force: true do |t|
+    t.integer  "user_id",        null: false
+    t.integer  "post_thread_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "bookmarks", ["post_thread_id"], name: "index_bookmarks_on_post_thread_id", using: :btree
+  add_index "bookmarks", ["user_id", "post_thread_id"], name: "index_bookmarks_on_user_id_and_post_thread_id", unique: true, using: :btree
+  add_index "bookmarks", ["user_id"], name: "index_bookmarks_on_user_id", using: :btree
 
   create_table "forums", force: true do |t|
     t.string   "name",       null: false

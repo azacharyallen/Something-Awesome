@@ -10,6 +10,7 @@
 #  role            :string(255)      default("USER"), not null
 #  created_at      :datetime
 #  updated_at      :datetime
+#  avatar          :string(255)      default("default_avatar.png")
 #
 
 class User < ActiveRecord::Base
@@ -22,6 +23,8 @@ class User < ActiveRecord::Base
 
   has_many :post_threads, inverse_of: :user
   has_many :posts, inverse_of: :user
+  has_many :bookmarks, inverse_of: :user
+  has_many :bookmarked_threads, through: :bookmarks, source: :post_thread
 
   has_secure_password
 

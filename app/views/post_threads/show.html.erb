@@ -24,12 +24,9 @@
     </table>
 
       <% @thread.posts.order(:id).each do |post| %>
-        <table  class="table table-striped" 
-                style="margin:0; border-bottom:rgb(250,250,250) 1px solid;">
 
           <%= render partial: "posts/post", locals: {post: post} %>
           
-        </table>
       <% end -%>
 
     <table class="table table-striped" style="margin:0;">

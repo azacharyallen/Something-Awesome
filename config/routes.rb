@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root to: "sections#index"
 
-  resources :users
+  resources :users do
+    resources :posts, only: [:index]
+  end
 
   resources :sections, only: [:show, :index]
 
@@ -16,4 +18,7 @@ Rails.application.routes.draw do
   resources :posts, only: [:show, :edit, :update, :destroy]
 
   resource :session, only: [:new, :create, :destroy]
+
+  get "/bookmarks", to: "bookmarks#index"
+  post "/bookmarks", to: "bookmarks#create"
 end

@@ -57,6 +57,24 @@
         },
       })
     });
+
+    $('.bookmark-button').click(function(event){
+      event.preventDefault();
+      // alert("Bookmarking a thread!");
+      var targetThread = event.currentTarget.dataset.threadId
+
+      $.ajax({
+        url: "/bookmarks",
+        method: "POST",
+        data: {bookmark: {post_thread_id: targetThread}},
+        success: function(response){
+          alert("Success!");
+        },
+        error: function(response){
+          alert("Oh No!");
+        },
+      });
+    });
   });
 </script>
 

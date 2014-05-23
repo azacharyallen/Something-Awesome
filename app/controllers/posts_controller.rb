@@ -2,11 +2,12 @@ class PostsController < ApplicationController
 before_action :ensure_login!, except: [:show, :index]
 
   def index
-    #placeholder
+    @user = User.find(params[:user_id])
+    @posts = Post.includes(:user).where(user_id: @user.id)
   end
   
   def show
-    #placeholder
+    @post = Post.includes(:user).find(params[:id])
   end
   
   def new

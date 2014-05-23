@@ -10,6 +10,7 @@
 #  role            :string(255)      default("USER"), not null
 #  created_at      :datetime
 #  updated_at      :datetime
+#  avatar          :string(255)      default("default_avatar.png")
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

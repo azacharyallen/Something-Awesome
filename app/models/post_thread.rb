@@ -16,4 +16,5 @@ class PostThread < ActiveRecord::Base
   belongs_to :user, inverse_of: :post_threads
   belongs_to :forum, inverse_of: :post_threads
   has_many :posts, inverse_of: :post_thread
+  has_many :bookmarks, inverse_of: :post_thread
 end

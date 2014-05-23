@@ -8,6 +8,7 @@
 #  post_thread_id :integer
 #  created_at     :datetime
 #  updated_at     :datetime
+#  edited         :string(255)      default("")
 #
 
 class Post < ActiveRecord::Base
@@ -15,4 +16,5 @@ class Post < ActiveRecord::Base
 
   belongs_to :user, inverse_of: :posts
   belongs_to :post_thread, inverse_of: :posts
+
 end

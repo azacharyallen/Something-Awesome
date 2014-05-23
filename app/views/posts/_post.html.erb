@@ -1,23 +1,52 @@
+<table  class="table table-striped" 
+        style="margin:0; border-bottom:rgb(250,250,250) 1px solid;">
+
 <tbody>
 <tr>
+  <!-- post author div -->
   <td style="border-right:grey 1px solid; width:200px; min-width:200px;">
     <strong><p style="margin-top:5px; color:black; font-size:125%;"><%= post.user.username %></p></strong>
     <p><%= post.user.reg_date %></p>
     <%= image_tag post.user.avatar, style: "display: block; margin: auto;" %>
     <div style="min-height:20px;"></div>
-    <a href="<%= user_url(post.user) %>"><div class="glyphicon glyphicon-user"></div></a>
+    <div style="text-align:center;">
+    <a href="<%= user_url(post.user) %>" class="btn btn-default btn-sm">
+      <span class="glyphicon glyphicon-user"></span>
+    </a>
+
+    <a href="#" class="btn btn-default btn-sm">
+      <span class="glyphicon glyphicon-envelope"></span>
+    </a>
+
+    <a href="#" class="btn btn-default btn-sm">
+      <span class="glyphicon glyphicon-list"></span>
+    </a>
+
+    <a href="<%= post_url(post) %>" class="btn btn-default btn-sm">
+      <span class="glyphicon glyphicon-link"></span>
+    </a>
+  </div>
   </td>
+
+  <!-- post body div -->
   <td>
     <div style="position:relative; height:100%; width:100%; display:inline-block">
-      <%= simple_format post.body %>
+      <!-- content div -->
+      <div style="padding-bottom:20px;">
+        <%= simple_format post.body %>
 
-      <% if !post.edited.empty? %>
-      <p style="font-style:italic;"><%= post.edited %></p>
-      <% end -%>
-
-      <div style="position:absolute; bottom:0; left:0;">
-        @<%= post.created_at %>
+        <!-- edited div -->
+        <% if !post.edited.empty? %>
+        <p style="font-style:italic;"><%= post.edited %></p>
+        <% end -%>
       </div>
+
+      <!-- created div -->
+      <div style="position:absolute; bottom:0; left:0;">
+        <%= post.created_at %>
+      </div>
+
+      <!-- controls div -->
       <div style="position:absolute; bottom:0; right:0;">
         <% if logged_in? %>
           <% if (current_user == post.user || ["ADMINISTRATOR", "MODERATOR"].include?(current_user.role)) %>
@@ -34,3 +63,5 @@
   </td>
 </tr>
 </tbody>
+
+</table>
