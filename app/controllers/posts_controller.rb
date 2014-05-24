@@ -23,11 +23,11 @@ before_action :ensure_login!, except: [:show, :index]
     @post = Post.new(post_params)
     @post.user = current_user
     @post.post_thread_id = params[:post_thread_id]
-
     if @post.save
+      @destination_page = PostThread.find(params[:post_thread_id]).posts.page(1).num_pages
       @post.post_thread.touch
-      flash[:notice] = "WOOOOOOO, YOU POSTED"
-      redirect_to post_thread_url(params[:post_thread_id])
+      flash[:notice] = "WOOOOOOO, YOU POSTED!"
+      redirect_to post_thread_url(params[:post_thread_id]) + "?page=#{@destination_page}#post-#{@post.id}"
     else
       flash[:errors] = @post.errors.full_messages
       redirect_to post_thread_url(params[:post_thread_id])

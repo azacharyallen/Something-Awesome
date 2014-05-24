@@ -6,7 +6,7 @@
       <li class="active"><%= @forum.name %></li>
       <div class="pull-right">
       <%= paginate @threads  %>
-    </div>
+      </div>
     </ol>
   </div>
 </div>
@@ -52,6 +52,9 @@
       <li><a href="/">Home</a></li>
       <li><a href="<%= section_url(@forum.section) %>"><%= @forum.section.name %></a></li>
       <li class="active"><%= @forum.name %></li>
+      <div class="pull-right">
+      <%= paginate @threads  %>
+      </div>
     </ol>
   </div>
 </div>

@@ -1,5 +1,6 @@
 <table  class="table table-striped" 
-        style="margin:0; border-bottom:rgb(250,250,250) 1px solid;">
+        style="margin:0; border-bottom:rgb(250,250,250) 1px solid;"
+        id="post-<%=post.id%>">
 
 <tbody>
 <tr>
@@ -48,7 +49,7 @@
 
       <!-- controls div -->
       <div style="position:absolute; bottom:0; right:0;">
-        <% if logged_in? %>
+        <% if logged_in? && !standalone %>
           <% if (current_user == post.user || ["ADMINISTRATOR", "MODERATOR"].include?(current_user.role)) %>
           <a href="<%= edit_post_url(post) %>" class="btn btn-default btn-sm">
             <span class="glyphicon glyphicon-edit"></span> Edit
