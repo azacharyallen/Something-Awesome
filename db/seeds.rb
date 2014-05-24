@@ -42,3 +42,5 @@ end
     threadPrime.posts.create!(body: "I'm a super awesome post ##{i}!", user: sa2)
   end
 end
+
+threadPrime.touch

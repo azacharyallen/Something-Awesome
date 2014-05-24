@@ -21,6 +21,10 @@
             <a href="<%= post_thread_url(thread) %>">
               <%= thread.title %> 
             </a>
+            <br>
+            <% posts = thread.posts.page(1) %>
+            <%= paginate posts, params: { :controller => 'post_threads', :action => 'show' } %>
+            </br>
           </td>
           <td>
             <!-- THREAD AUTHOR -->
