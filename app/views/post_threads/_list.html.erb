@@ -1,5 +1,12 @@
     <table class="table table-striped thread-table" style="margin:0;">
       <%# @forum.post_threads.sort_by(&:updated_at).reverse.each do |thread| %>
+      <tr>
+        <th></th>
+        <th>Thread Title</th>
+        <th>Author</th>
+        <th>Replies</th>
+        <th>Last Reply</th>
+      </tr>
       <% @threads.each do |thread| %>
         <tr>
           <td style="width:25px;">
@@ -23,7 +30,7 @@
             </a>
             <br>
             <% posts = thread.posts.page(1) %>
-            <%= paginate posts, params: { :controller => 'post_threads', :action => 'show' } %>
+            <%= paginate posts, theme: "thread_external", params: { :controller => 'post_threads', :action => 'show' } %>
             </br>
           </td>
           <td>
@@ -31,6 +38,14 @@
             <a href="<%= user_url(thread.user) %>">
               <%= thread.user.username %>
             </a>
+          </td>
+          <td>
+            <%= thread.posts.count %>
+          </td>
+          <td>
+            <% last_post = thread.posts.last %>
+            <%= last_post.user.username %>
+            <br> <%= last_post.created_at %> </br>
           </td>
         </tr>
       <% end -%>

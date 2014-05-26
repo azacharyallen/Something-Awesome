@@ -21,17 +21,17 @@ threadPrime = gc.post_threads.create!(title: "A Super Awesome Thread", user: sa1
 
 (1..100).each do |i|
   if i.odd?
-    gc.post_threads.create!(title: "A Super Thread ##{i}", user: sa1)
+    gc.post_threads.create!(title: "A Super Thread ##{i}", user: sa1).posts.create!(body: "WOO!", user: sa1)
   else
-    gc.post_threads.create!(title: "A Super Thread ##{i}", user: sa2)
+    gc.post_threads.create!(title: "A Super Thread ##{i}", user: sa2).posts.create!(body: "WOO!", user: sa2)
   end
 end
 
 (101..200).each do |i|
   if i.odd?
-    gc.post_threads.create!(title: "A Super Thread ##{i}", user: sa1)
+    sscs.post_threads.create!(title: "A Super Thread ##{i}", user: sa1).posts.create!(body: "WOO!", user: sa1)
   else
-    gc.post_threads.create!(title: "A Super Thread ##{i}", user: sa2)
+    sscs.post_threads.create!(title: "A Super Thread ##{i}", user: sa2).posts.create!(body: "WOO!", user: sa2)
   end
 end
 
