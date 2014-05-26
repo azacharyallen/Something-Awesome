@@ -8,15 +8,23 @@ before_action :ensure_login!, except: [:show, :index]
   
   def show
     @post = Post.includes(:user).find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @post.to_json(include: :user) }
+    end
   end
   
   def new
     @post = Post.new()
+    @thread = params[:post_thread_id]
 
     if params[:quote]
       quoted_post = Post.find(params[:quote])
       @post.body = "<i>#{quoted_post.user.username}</i> said:\n <blockquote>" + quoted_post.body + "</blockquote>\n" 
     end
+    
+    render partial: "new_form"
   end
   
   def create
@@ -36,6 +44,7 @@ before_action :ensure_login!, except: [:show, :index]
   
   def edit
     @post = Post.find(params[:id])
+    render partial: "edit_form"
   end
   
   def update
