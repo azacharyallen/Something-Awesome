@@ -1,76 +1,76 @@
   <%#= render 'form' %>
 
-  <div class="row">
-    <div class="col-xs-8 col-xs-offset-2">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h1 class="panel-title">Sign Up</h1>
-    </div>
-    <div class="panel-body">
-
-  <form action="<%= users_url %>" 
-        method="post" 
-        role="form" 
-        class="form-horizontal" 
-        enctype="multipart/form-data">
-
-    <input   type="hidden"
-            name="authenticity_token"
-            value="<%= form_authenticity_token %>">
-
-    <div class="form-group">
-     <label for="user_username" class="control-label col-xs-2">Username</label>
-     <div class="col-xs-10">
-     <input type="text" 
-            class="form-control"
-            id="user_username" 
-            name="user[username]" 
-            value=""
-            placeholder="A Super Special Someone">
+<div class="row">
+  <div class="col-xs-8 col-xs-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h1 class="panel-title">Sign Up</h1>
       </div>
-    </div>
+      <div class="panel-body">
 
-    <div class="form-group">
-     <label for="user_s3avatar" class="control-label col-xs-2">Avatar</label>
-     <div class="col-xs-10">
-     <input type="file" 
-            class="form-control"
-            id="user_s3avatar" 
-            name="user[s3avatar]">
-      </div>
-    </div>
+        <form action="<%= users_url %>" 
+              method="post" 
+              role="form" 
+              class="form-horizontal" 
+              enctype="multipart/form-data">
 
-    <div class="form-group">
-        <label  for="user_password" class="control-label col-xs-2">Password</label>
-        <div class="col-xs-10">
-        <input  type="password"
-                class="form-control" 
-                id="user_password" 
-                name="user[password]" 
-                value=""
-                placeholder="password">
+          <input   type="hidden"
+                  name="authenticity_token"
+                  value="<%= form_authenticity_token %>">
+
+          <div class="form-group">
+            <label for="user_username" class="control-label col-xs-2">Username</label>
+            <div class="col-xs-10">
+              <input  type="text" 
+                      class="form-control"
+                      id="user_username" 
+                      name="user[username]" 
+                      value=""
+                      placeholder="A Super Special Someone">
+            </div>
           </div>
-    </div>
 
-    <div class="form-group">
-      <label  for="user_password_confirmation" class="control-label col-xs-2">Confirm your Password</label>
-      <div class="col-xs-10">
-      <input  type="password" 
-              class="form-control"
-              id="user_password_confirmation" 
-              name="user[password_confirmation]" 
-              value=""
-              placeholder="password confirmation">
-        </div>
-    </div>
+          <div class="form-group">
+            <label for="user_s3avatar" class="control-label col-xs-2">Avatar</label>
+            <div class="col-xs-10">
+              <input  type="file" 
+                      class="form-control"
+                      id="user_s3avatar" 
+                      name="user[s3avatar]">
+            </div>
+          </div>
 
-    <div class="form-group">
-      <div class="col-xs-offset-2 col-xs-10">
-      <input type="submit" class="btn btn-primary" value="Sign Up">
+          <div class="form-group">
+              <label  for="user_password" class="control-label col-xs-2">Password</label>
+              <div class="col-xs-10">
+                <input  type="password"
+                        class="form-control" 
+                        id="user_password" 
+                        name="user[password]" 
+                        value=""
+                        placeholder="password">
+              </div>
+          </div>
+
+          <div class="form-group">
+            <label  for="user_password_confirmation" class="control-label col-xs-2">Confirm your Password</label>
+            <div class="col-xs-10">
+            <input  type="password" 
+                    class="form-control"
+                    id="user_password_confirmation" 
+                    name="user[password_confirmation]" 
+                    value=""
+                    placeholder="password confirmation">
+              </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-xs-offset-2 col-xs-10">
+            <input type="submit" class="btn btn-primary" value="Sign Up">
+          </div>
+          </div>
+        </form>
+      </div>
     </div>
-    </div>
-  </form>
   </div>
-  </div>
-  </div>
-  </div>
+</div>

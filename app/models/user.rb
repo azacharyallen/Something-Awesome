@@ -29,6 +29,8 @@ class User < ActiveRecord::Base
 
   validates_attachment_size :s3avatar, :less_than => 100.kilobytes
 
+  validate :image_dimensions
+
   before_validation :ensure_session_token;
 
   has_many :post_threads, inverse_of: :user
@@ -37,6 +39,19 @@ class User < ActiveRecord::Base
   has_many :bookmarked_threads, through: :bookmarks, source: :post_thread
 
   has_secure_password
+
+  def image_dimensions
+    max_width  = 150
+    max_height = 150
+    temp_file = s3avatar.queued_for_write[:original]
+
+    return unless temp_file
+
+    dimensions = Paperclip::Geometry.from_file(temp_file)
+
+    errors.add(:s3avatar, "Width must be less than #{max_width}px") unless dimensions.width <= max_width
+    errors.add(:s3avatar, "Height must be less than #{max_height}px") unless dimensions.height <= max_height
+  end
 
 
   def reset_session_token!

@@ -1,6 +1,80 @@
-<h1>Editing user</h1>
+  <%#= render 'form' %>
 
-<%= render 'form' %>
+<div class="row">
+  <div class="col-xs-8 col-xs-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h1 class="panel-title">Edit Your Profile</h1>
+      </div>
+      <div class="panel-body">
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+        <form action="<%= user_url(@user) %>" 
+              method="post" 
+              role="form" 
+              class="form-horizontal" 
+              enctype="multipart/form-data">
+
+          <input  type="hidden"
+                  name="authenticity_token"
+                  value="<%= form_authenticity_token %>">
+
+          <input  type="hidden"
+                  name="_method"
+                  value="PATCH">
+
+          <div class="form-group">
+            <label for="user_username" class="control-label col-xs-2">Username</label>
+            <div class="col-xs-10">
+              <input  type="text" 
+                      class="form-control"
+                      id="user_username" 
+                      name="user[username]" 
+                      value="<%= @user.username %>"
+                      placeholder="A Super Special Someone">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="user_s3avatar" class="control-label col-xs-2">Avatar</label>
+            <div class="col-xs-10">
+              <input  type="file" 
+                      class="form-control"
+                      id="user_s3avatar" 
+                      name="user[s3avatar]">
+            </div>
+          </div>
+
+          <div class="form-group">
+              <label  for="user_password" class="control-label col-xs-2">Password</label>
+              <div class="col-xs-10">
+                <input  type="password"
+                        class="form-control" 
+                        id="user_password" 
+                        name="user[password]" 
+                        value=""
+                        placeholder="password">
+              </div>
+          </div>
+
+          <div class="form-group">
+            <label  for="user_password_confirmation" class="control-label col-xs-2">Confirm your Password</label>
+            <div class="col-xs-10">
+            <input  type="password" 
+                    class="form-control"
+                    id="user_password_confirmation" 
+                    name="user[password_confirmation]" 
+                    value=""
+                    placeholder="password confirmation">
+              </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-xs-offset-2 col-xs-10">
+            <input type="submit" class="btn btn-primary" value="Update Profile">
+          </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
