@@ -8,7 +8,12 @@
     </div>
     <div class="panel-body">
 
-  <form action="<%= users_url %>" method="post" role="form" class="form-horizontal">
+  <form action="<%= users_url %>" 
+        method="post" 
+        role="form" 
+        class="form-horizontal" 
+        enctype="multipart/form-data">
+
     <input   type="hidden"
             name="authenticity_token"
             value="<%= form_authenticity_token %>">
@@ -22,6 +27,16 @@
             name="user[username]" 
             value=""
             placeholder="A Super Special Someone">
+      </div>
+    </div>
+
+    <div class="form-group">
+     <label for="user_s3avatar" class="control-label col-xs-2">Avatar</label>
+     <div class="col-xs-10">
+     <input type="file" 
+            class="form-control"
+            id="user_s3avatar" 
+            name="user[s3avatar]">
       </div>
     </div>
 

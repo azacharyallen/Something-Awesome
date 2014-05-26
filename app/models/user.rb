@@ -14,11 +14,21 @@
 #
 
 class User < ActiveRecord::Base
-  validates :username, :session_token, :password_digest, presence: true
+  has_attached_file :s3avatar, styles: {
+    :default_url => "/images/:attachment/missing_:style.png"
+  }
+
+  validates :username, :session_token, presence: true
   validates :username, :session_token, uniqueness: true
   validates :role, inclusion: {in: %w(USER MODERATOR ADMINISTRATOR)}
 
   validates_length_of :password, minimum: 6, allow_nil: true
+
+  validates_attachment :s3avatar,
+  :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] }
+
+  validates_attachment_size :s3avatar, :less_than => 100.kilobytes
+
   before_validation :ensure_session_token;
 
   has_many :post_threads, inverse_of: :user
@@ -27,6 +37,7 @@ class User < ActiveRecord::Base
   has_many :bookmarked_threads, through: :bookmarks, source: :post_thread
 
   has_secure_password
+
 
   def reset_session_token!
     self.session_token = SecureRandom.hex

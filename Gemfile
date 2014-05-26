@@ -43,6 +43,9 @@ gem 'figaro'
 
 gem 'kaminari'
 
+gem 'paperclip'
+gem 'aws-sdk'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 

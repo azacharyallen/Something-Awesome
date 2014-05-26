@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140523183335) do
+ActiveRecord::Schema.define(version: 20140526212255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,14 +72,18 @@ ActiveRecord::Schema.define(version: 20140523183335) do
   add_index "sections", ["rank"], name: "index_sections_on_rank", unique: true, using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "username",                                                         null: false
-    t.string   "session_token",                                                    null: false
-    t.string   "password_digest",                                                  null: false
-    t.string   "role",            default: "USER",                                 null: false
+    t.string   "username",                                                               null: false
+    t.string   "session_token",                                                          null: false
+    t.string   "password_digest",                                                        null: false
+    t.string   "role",                  default: "USER",                                 null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "avatar",          default: "default_avatar.png"
-    t.text     "profile",         default: "I haven't written anything here yet."
+    t.string   "avatar",                default: "default_avatar.png"
+    t.text     "profile",               default: "I haven't written anything here yet."
+    t.string   "s3avatar_file_name"
+    t.string   "s3avatar_content_type"
+    t.integer  "s3avatar_file_size"
+    t.datetime "s3avatar_updated_at"
   end
 
   add_index "users", ["session_token"], name: "index_users_on_session_token", unique: true, using: :btree
