@@ -54,14 +54,14 @@
           <a  href="<%= edit_post_url(post) %>" 
               class="btn btn-default btn-sm"
               data-toggle="modal"
-              data-target="#editPostModal">
+              data-target="#replyModal">
             <span class="glyphicon glyphicon-edit"></span> Edit
           </a>
           <% end %>
           <a  href='<%= new_post_thread_post_url(@thread) + "?quote=#{post.id}" %>'
               class="btn btn-default btn-sm"
               data-toggle="modal"
-              data-target="#newReplyModal">
+              data-target="#replyModal">
             <span class="glyphicon glyphicon-new-window"></span> Quote
           </a>
         <% end %>
