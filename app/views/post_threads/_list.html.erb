@@ -23,7 +23,7 @@
             <% end -%>
           </td>
           <!-- THREAD TITLE -->
-          <td style="vertical-align:middle;">
+          <td style="vertical-align:middle; max-width:550px;">
             <a href="<%= post_thread_url(thread) %>" style="font-weight:bold;">
               <%= thread.title %> 
             </a>
@@ -33,19 +33,21 @@
                         locals: {posts: posts, thread: thread} %>
             </br>
           </td>
+          <!-- THREAD AUTHOR -->
           <td style="vertical-align:middle;">
-            <!-- THREAD AUTHOR -->
             <a href="<%= user_url(thread.user) %>">
               <%= thread.user.username %>
             </a>
           </td>
+          <!-- THREAD REPLY COUNT -->
           <td style="vertical-align:middle;">
             <%= thread.posts.count %>
           </td>
+          <!-- LAST REPLY -->
           <td style="vertical-align:middle;">
-            <% last_post = thread.posts.last %>
-            <%= last_post.user.username %>
-            <br> <%= last_post.created_at %> </br>
+            <% last_post = thread.posts.sort_by(&:id).last %>
+            <%= last_post.created_at.strftime("%H:%M %d %b, %Y") %>
+            <br>by: <%= last_post.user.username %></br>
           </td>
         </tr>
       <% end -%>

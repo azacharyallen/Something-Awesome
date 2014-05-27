@@ -8,6 +8,7 @@
 #  forum_id   :integer          not null
 #  created_at :datetime
 #  updated_at :datetime
+#  closed     :boolean          default(FALSE)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
