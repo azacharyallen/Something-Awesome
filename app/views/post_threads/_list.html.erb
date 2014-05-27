@@ -8,7 +8,7 @@
       </tr>
       <% @threads.each do |thread| %>
         <tr>
-          <td style="width:25px;">
+          <td style="width:25px; vertical-align:middle;">
             <!-- BOOKMARK BUTTONS -->
             <% if logged_in? %>
               <% if @bookmarks.include?(thread.id) %>            
@@ -23,29 +23,26 @@
             <% end -%>
           </td>
           <!-- THREAD TITLE -->
-          <td style="font-weight:bold; vertical-align:middle;">
-            <a href="<%= post_thread_url(thread) %>">
+          <td style="vertical-align:middle;">
+            <a href="<%= post_thread_url(thread) %>" style="font-weight:bold;">
               <%= thread.title %> 
             </a>
             <br>
             <% posts = thread.posts.page(1) %>
-            <%#= paginate posts, theme: "thread_external", 
-                                params: { :controller => 'post_threads', 
-                                          :action => 'show' } %>
             <%= render  partial: "post_threads/paginator", 
                         locals: {posts: posts, thread: thread} %>
             </br>
           </td>
-          <td>
+          <td style="vertical-align:middle;">
             <!-- THREAD AUTHOR -->
             <a href="<%= user_url(thread.user) %>">
               <%= thread.user.username %>
             </a>
           </td>
-          <td>
+          <td style="vertical-align:middle;">
             <%= thread.posts.count %>
           </td>
-          <td>
+          <td style="vertical-align:middle;">
             <% last_post = thread.posts.last %>
             <%= last_post.user.username %>
             <br> <%= last_post.created_at %> </br>

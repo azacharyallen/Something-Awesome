@@ -30,7 +30,7 @@ sf = discussion.forums.create!(name: "San Francisco", rank: 2)
   thread = gc.post_threads.create!(title: Faker::Lorem.sentence, user: user)
   thread.posts.create!(body: Faker::Lorem.paragraph, user: user)
   (1..300).to_a.sample.times do
-    thread.posts.create!(body: Faker::Lorem.paragraph, user: users.sample)
+    thread.posts.create!(body: Faker::Lorem.paragraphs((1..6).to_a.sample).join("\n\n"), user: users.sample)
   end
 end
 
@@ -39,6 +39,6 @@ end
   thread = sscs.post_threads.create!(title: Faker::Lorem.sentence, user: user)
   thread.posts.create!(body: Faker::Lorem.paragraph, user: user)
   (1..42).to_a.sample.times do
-    thread.posts.create!(body: Faker::Lorem.paragraph, user: users.sample)
+    thread.posts.create!(body: Faker::Lorem.paragraphs((1..6).to_a.sample).join("\n\n"), user: users.sample)
   end
 end
