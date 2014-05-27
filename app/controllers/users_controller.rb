@@ -14,7 +14,9 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
-    @user = User.new
+    username = "Someone Awesome ##{User.count + 1}"
+    password = Faker::Internet.password
+    @user = User.new(username: username, password: password)
   end
 
   # GET /users/1/edit
