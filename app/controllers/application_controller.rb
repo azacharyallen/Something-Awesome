@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper_method :current_user, :logged_in?
+
+  before_action :banned?
   
   private
   def login!(user)
@@ -28,6 +30,12 @@ class ApplicationController < ActionController::Base
     unless logged_in?
       flash[:notice] = "You must be logged in to do that"
       redirect_to root_url
+    end
+  end
+
+  def banned?
+    if logged_in? && current_user.banned
+      flash[:errors] = ["You have been banned!  (You can not create or edit any threads or posts)"]
     end
   end
 end

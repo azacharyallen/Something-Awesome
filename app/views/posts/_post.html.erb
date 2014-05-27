@@ -50,7 +50,7 @@
       <!-- controls div -->
       <div style="position:absolute; bottom:0; right:0;">
         <% if logged_in? && !standalone %>
-          <% if (current_user == post.user || ["ADMINISTRATOR", "MODERATOR"].include?(current_user.role)) %>
+          <% if (can? :update, post) && !@thread.closed%>
           <a  href="<%= edit_post_url(post) %>" 
               class="btn btn-default btn-sm"
               data-toggle="modal"
@@ -58,12 +58,14 @@
             <span class="glyphicon glyphicon-edit"></span> Edit
           </a>
           <% end %>
-          <a  href='<%= new_post_thread_post_url(@thread) + "?quote=#{post.id}" %>'
-              class="btn btn-default btn-sm"
-              data-toggle="modal"
-              data-target="#replyModal">
-            <span class="glyphicon glyphicon-new-window"></span> Quote
-          </a>
+            <% if (can? :create, Post) && !@thread.closed %>
+            <a  href='<%= new_post_thread_post_url(@thread) + "?quote=#{post.id}" %>'
+                class="btn btn-default btn-sm"
+                data-toggle="modal"
+                data-target="#replyModal">
+              <span class="glyphicon glyphicon-new-window"></span> Quote
+            </a>
+            <% end -%>
         <% end %>
       </div>
    </div>

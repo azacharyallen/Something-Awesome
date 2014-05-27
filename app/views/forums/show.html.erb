@@ -27,14 +27,19 @@
     <table class="table table-striped" style="margin:0;">
       <tr>
         <td colspan="2" style="background-color:rgb(53,72,80); border-top:black 2px solid; border-bottom:black 2px solid;">
-        
-          <a  href="<%=new_forum_post_thread_url(@forum)%>" 
-              class="btn btn-default btn-small pull-right"
-              data-toggle="modal" 
-              data-target="#threadModal">
-            <span class="glyphicon glyphicon-pencil"></span> Post
-          </a>
-
+          <% if logged_in? %>
+            <% if (can? :create, PostThread) %>
+            <a  href="<%=new_forum_post_thread_url(@forum)%>" 
+                class="btn btn-default btn-small pull-right">
+              <span class="glyphicon glyphicon-pencil"></span> Post
+            </a>
+            <% else %>
+              <a  href="#" 
+                class="btn btn-default btn-small pull-right disabled">
+              <span class="glyphicon glyphicon-pencil"></span> Nope
+              </a>
+            <% end -%>
+          <% end -%>
         </td>
       </tr>
     </table>
@@ -46,10 +51,19 @@
     <table class="table table-striped" style="margin:0;">
       <tr>
         <td colspan="2" style="background-color:rgb(53,72,80); border-top:black 2px solid; border-bottom:black 2px solid;">
-          <a  href="<%=new_forum_post_thread_url(@forum)%>" 
-              class="btn btn-default btn-small pull-right">
-            <span class="glyphicon glyphicon-pencil"></span> Post
-          </a>
+          <% if logged_in? %>
+            <% if (can? :create, PostThread) %>
+            <a  href="<%=new_forum_post_thread_url(@forum)%>" 
+                class="btn btn-default btn-small pull-right">
+              <span class="glyphicon glyphicon-pencil"></span> Post
+            </a>
+            <% else %>
+              <a  href="#" 
+                class="btn btn-default btn-small pull-right disabled">
+              <span class="glyphicon glyphicon-pencil"></span> Nope
+              </a>
+            <% end -%>
+          <% end -%>
         </td>
       </tr>
     </table>
