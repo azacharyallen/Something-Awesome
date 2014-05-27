@@ -20,7 +20,7 @@
 
   <ul class="forum-list list-group"
       style="margin: 0px; padding: 0px; list-style-type: none">
-    <% @section.forums.each do |forum| %>
+    <% @section.forums.sort_by(&:rank).each do |forum| %>
       <li class="list-group-item">
         <%= link_to forum.name, forum_url(forum) %>
       </li>

@@ -46,6 +46,8 @@ gem 'kaminari'
 gem 'paperclip'
 gem 'aws-sdk'
 
+gem 'cancan'
+
 gem 'faker'
 
 # Use unicorn as the app server
