@@ -15,7 +15,7 @@
 
           <% section.forums.each do |forum| %>
             <li class="list-group-item">
-              <%= link_to forum.name, forum_url(forum) %>
+              <strong><%= link_to forum.name, forum_url(forum) %></strong>
             </li>
           <% end -%>
           

@@ -1,10 +1,10 @@
     <table class="table table-striped thread-table" style="margin:0;">
       <tr>
         <th></th>
-        <th>Thread Title</th>
-        <th>Author</th>
-        <th>Replies</th>
-        <th>Last Reply</th>
+        <th>Title</th>
+        <th class="text-right">Author</th>
+        <th class="text-right">Replies</th>
+        <th class="text-right">Last Reply</th>
       </tr>
       <% @threads.each do |thread| %>
         <tr>
@@ -37,20 +37,24 @@
             </br>
           </td>
           <!-- THREAD AUTHOR -->
-          <td style="vertical-align:middle;">
+          <td style="vertical-align:middle; text-align:right;">
             <a href="<%= user_url(thread.user) %>">
               <%= thread.user.username %>
             </a>
           </td>
           <!-- THREAD REPLY COUNT -->
-          <td style="vertical-align:middle;">
+          <td style="vertical-align:middle; text-align:right;">
             <%= thread.posts.count %>
           </td>
           <!-- LAST REPLY -->
-          <td style="vertical-align:middle;">
+          <td style="vertical-align:middle; text-align:right;">
             <% last_post = thread.posts.sort_by(&:id).last %>
             <%= last_post.created_at.strftime("%H:%M %b %d, %Y") %>
-            <br>by: <%= last_post.user.username %></br>
+            <br>
+              <a href="<%= user_url(last_post.user) %>"> 
+                <%= last_post.user.username %>
+              </a>
+            </br>
           </td>
         </tr>
       <% end -%>
