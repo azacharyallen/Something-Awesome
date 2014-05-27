@@ -30,7 +30,9 @@
           <% if logged_in? %>
             <% if (can? :create, PostThread) %>
             <a  href="<%=new_forum_post_thread_url(@forum)%>" 
-                class="btn btn-default btn-small pull-right">
+                class="btn btn-default btn-small pull-right"
+                data-toggle="modal"
+                data-target="#threadModal">
               <span class="glyphicon glyphicon-pencil"></span> Post
             </a>
             <% else %>
@@ -54,7 +56,9 @@
           <% if logged_in? %>
             <% if (can? :create, PostThread) %>
             <a  href="<%=new_forum_post_thread_url(@forum)%>" 
-                class="btn btn-default btn-small pull-right">
+                class="btn btn-default btn-small pull-right"
+                data-toggle="modal"
+                data-target="#threadModal">
               <span class="glyphicon glyphicon-pencil"></span> Post
             </a>
             <% else %>
