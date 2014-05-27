@@ -25,6 +25,9 @@
           <!-- THREAD TITLE -->
           <td style="vertical-align:middle; max-width:550px;">
             <a href="<%= post_thread_url(thread) %>" style="font-weight:bold;">
+              <% if thread.closed %>
+              <span class="glyphicon glyphicon-lock"></span>
+              <% end -%>
               <%= thread.title %> 
             </a>
             <br>
