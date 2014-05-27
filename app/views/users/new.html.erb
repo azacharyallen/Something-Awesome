@@ -1,35 +1,33 @@
 <div class="row">
   <div class="col-xs-8 col-xs-offset-2">
+
+    <div class="jumbotron text-center">
+      <form action="<%= users_url %>" 
+            method="post" 
+            role="form" 
+            class="form-horizontal" 
+            enctype="multipart/form-data">
+
+      <input  type="hidden"
+              name="authenticity_token"
+              value="<%= form_authenticity_token %>">
+      <input  type="hidden"
+              name="user[username]"
+              value="<%= @user.username %>">
+      <input  type="hidden"
+              name="user[password]"
+              value="<%= @user.password %>">
+
+      <button type="submit" class="btn btn-lg btn-danger">SIGN ME UP, SCOTTY!</button>
+      <br>Just want to poke around?</br>
+      </form>
+    </div>
+
     <div class="panel panel-default">
       <div class="panel-heading">
         <h1 class="panel-title">Sign Up</h1>
       </div>
       <div class="panel-body">
-
-        <div class="jumbotron text-center">
-
-          <form action="<%= users_url %>" 
-                method="post" 
-                role="form" 
-                class="form-horizontal" 
-                enctype="multipart/form-data">
-
-          <input  type="hidden"
-                  name="authenticity_token"
-                  value="<%= form_authenticity_token %>">
-          <input  type="hidden"
-                  name="user[username]"
-                  value="<%= @user.username %>">
-          <input  type="hidden"
-                  name="user[password]"
-                  value="<%= @user.password %>">
-
-          <br></br>
-          <button type="submit" class="btn btn-lg btn-danger">SIGN ME UP, SCOTTY!</button>
-          <br>Just want to poke around?</br>
-          </form>
-
-        </div>
 
         <form action="<%= users_url %>" 
               method="post" 
@@ -60,6 +58,7 @@
                       class="form-control"
                       id="user_avatar" 
                       name="user[avatar]">
+              Avatar image must have dimensions less/equal to 150px and be less than 100KB in size
             </div>
           </div>
 

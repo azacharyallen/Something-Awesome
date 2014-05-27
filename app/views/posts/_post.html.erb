@@ -6,7 +6,9 @@
 <tr>
   <!-- post author div -->
   <td style="border-right:grey 1px solid; width:200px; min-width:200px;">
-    <strong><p style="margin-top:5px; color:black; font-size:115%;"><%= post.user.username %></p></strong>
+    <strong>
+      <p style="margin-top:5px; color:black; font-size:115%;"><%= post.user.username %></p>
+    </strong>
     <p><%= post.user.reg_date %></p>
     <% if post.user.banned %>
     <%= image_tag "banned.png", style: "display: block; margin: auto;", class: "avatar_image" %>

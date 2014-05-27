@@ -49,7 +49,7 @@
           <!-- LAST REPLY -->
           <td style="vertical-align:middle;">
             <% last_post = thread.posts.sort_by(&:id).last %>
-            <%= last_post.created_at.strftime("%H:%M %d %b, %Y") %>
+            <%= last_post.created_at.strftime("%H:%M %b %d, %Y") %>
             <br>by: <%= last_post.user.username %></br>
           </td>
         </tr>
