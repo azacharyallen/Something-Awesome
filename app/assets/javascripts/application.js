@@ -153,6 +153,8 @@
       });
     });
 
+    $('blockquote').toggleClass("well well-lg");
+
     $('body').on('hidden.bs.modal', '.modal', function () {
       $(this).removeData('bs.modal');
     });

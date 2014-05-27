@@ -21,7 +21,7 @@ before_action :ensure_login!, except: [:show, :index]
 
     if params[:quote]
       quoted_post = Post.find(params[:quote])
-      @post.body = "<i>#{quoted_post.user.username}</i> said:\n <blockquote>" + quoted_post.body + "</blockquote>\n" 
+      @post.body = "<blockquote><p><b><i>#{quoted_post.user.username}</b> said:</i>\n" + quoted_post.body + "</p></blockquote>\n" 
     end
     
     render partial: "new_form"
