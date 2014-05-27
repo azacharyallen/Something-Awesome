@@ -14,6 +14,8 @@ class PostThreadsController < ApplicationController
   
   def new
     @post_thread = PostThread.new
+    @post_thread.forum_id = params[:forum_id]
+    render partial: "new_form"
   end
   
   def create
