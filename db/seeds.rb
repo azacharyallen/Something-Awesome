@@ -8,7 +8,7 @@
 
 users = []
 
-100.times do
+50.times do
   begin
     name = Faker::Internet.user_name
     password = Faker::Internet.password
@@ -25,11 +25,20 @@ gc = main.forums.create!(name: "General Crap", rank: 1)
 sscs = discussion.forums.create!(name: "Super Serious Computer Stuff", rank: 1)
 sf = discussion.forums.create!(name: "San Francisco", rank: 2)
 
-(1..100).each do |i|
+(1..26).each do |i|
   user = users.sample
   thread = gc.post_threads.create!(title: Faker::Lorem.sentence, user: user)
   thread.posts.create!(body: Faker::Lorem.paragraph, user: user)
-  100.times do
+  (1..300).to_a.sample.times do
+    thread.posts.create!(body: Faker::Lorem.paragraph, user: users.sample)
+  end
+end
+
+(1..10).each do |i|
+  user = users.sample
+  thread = sscs.post_threads.create!(title: Faker::Lorem.sentence, user: user)
+  thread.posts.create!(body: Faker::Lorem.paragraph, user: user)
+  (1..42).to_a.sample.times do
     thread.posts.create!(body: Faker::Lorem.paragraph, user: users.sample)
   end
 end

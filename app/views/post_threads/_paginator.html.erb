@@ -1,0 +1,16 @@
+<nav class="pagination" style="margin:0;">
+<% last_page = posts.num_pages %>
+Pages: 
+<% (1..[last_page, 5].min).each do |i| %>
+<span class="page">
+<a href='<%= post_thread_url(thread) + "?page=#{i}" %>'><%= i %> </a>
+</span>
+<% end %>
+
+<% if last_page > 5 %>
+  <%= " ... " %>
+  <span class="last">
+  <a href='<%= post_thread_url(thread) + "?page=#{last_page}" %>'>Last »</a>
+</span>
+<% end -%>
+</nav>
