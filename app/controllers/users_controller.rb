@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy] 
 
   # GET /users
   # GET /users.json
@@ -21,6 +21,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    authorize! :update, @user, message: "You are not alowed to edit another user's profile"
   end
 
   # POST /users
@@ -41,20 +42,20 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    authorize! :update, @user, message: "You are not alowed to edit another user's profile"
+    if @user.update(user_params)
+      flash[:notice] = "Your profile has been updated.  Woo!"
+      redirect_to @user
+    else
+      flash.now[:errors] = @user.errors.full_messages
+      render :edit
     end
   end
 
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    authorize! :destroy, @user, message: "You are not allowed to destroy that resource"
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }

@@ -44,7 +44,11 @@ a:hover {
 	color:rgb(42, 42, 42);
 }
 
-.thread-table a{
+a {
+	color:inherit;
+}
+
+.forum-list a{
 	color:inherit;
 }
 

@@ -16,11 +16,13 @@ class Ability
     elsif user.role == "USER"
         can :read, :all
         can :manage, Bookmark, user_id: user.id
+        can :update, User, id: user.id
 
         unless user.banned
-            can :create, PostThread
             can :create, Post
+            can :create, PostThread
             can :update, Post, user_id: user.id
+            can :update, PostThread, user_id: user.id
         end
     else
         can :read, :all

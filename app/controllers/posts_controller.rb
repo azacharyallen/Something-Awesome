@@ -16,6 +16,7 @@ before_action :ensure_login!, except: [:show, :index]
   end
   
   def new
+    authorize! :create, Post
     @post = Post.new()
     @thread = params[:post_thread_id]
 
@@ -28,6 +29,7 @@ before_action :ensure_login!, except: [:show, :index]
   end
   
   def create
+    authorize! :create, Post
     @post = Post.new(post_params)
     @post.user = current_user
     @post.post_thread_id = params[:post_thread_id]
@@ -44,11 +46,14 @@ before_action :ensure_login!, except: [:show, :index]
   
   def edit
     @post = Post.find(params[:id])
+    authorize! :update, @post
     render partial: "edit_form"
   end
   
   def update
     @post = Post.find(params[:id])
+    authorize! :update, @post
+
     @post.edited = "Edited by #{current_user.username} at #{@post.updated_at}" 
     if @post.update_attributes(post_params)
       flash[:notice] = "Your post was edited!"

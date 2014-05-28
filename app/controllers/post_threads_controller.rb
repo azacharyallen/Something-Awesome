@@ -2,9 +2,7 @@ class PostThreadsController < ApplicationController
   before_action :ensure_login!, except: [:show]
 
   def index
-    fail
-    @threads = current_user.bookmarked_threads.order(:updated_at).reverse_order
-    # @threads = PostThread.page(1)
+    # Placeholder
   end
   
   def show
@@ -22,12 +20,14 @@ class PostThreadsController < ApplicationController
   end
   
   def new
+    authorize! :create, PostThread
     @post_thread = PostThread.new
     @post_thread.forum_id = params[:forum_id]
     render partial: "new_form"
   end
   
   def create
+    authorize! :create, PostThread
     @post_thread = PostThread.new(post_thread_params)
     @post_thread.user = current_user
     @post_thread.forum_id = params[:forum_id]
@@ -50,10 +50,10 @@ class PostThreadsController < ApplicationController
   
   def update
     @post_thread = PostThread.find(params[:id])
+    authorize! :update, @post_thread
 
     if @post_thread.update_attributes(post_thread_params)
       flash[:notice] = "Thread updated, thanks!"
-      # redirect_to post_thread_url(@post_thread)
       return head :ok
     else
       flash[:errors] = @post_thread.errors.full_messages

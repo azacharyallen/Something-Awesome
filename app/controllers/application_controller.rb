@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in?
 
   before_action :banned?
+
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :alert => exception.message
+  end
   
   private
   def login!(user)
