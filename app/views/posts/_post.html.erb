@@ -21,7 +21,10 @@
       <span class="glyphicon glyphicon-user"></span>
     </a>
 
-    <a href="#" class="btn btn-default btn-sm">
+    <a  href="<%= new_user_private_message_url(post.user) %>" 
+        class="btn btn-default btn-sm <%= "disabled" unless logged_in? %>"
+        data-toggle="modal"
+        data-target="#pmModal">
       <span class="glyphicon glyphicon-envelope"></span>
     </a>
 

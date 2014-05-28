@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :new, :create, :edit, :update] do
     resources :posts, only: [:index]
+    resources :private_messages, only: [:new, :create]
   end
 
   resources :sections, only: [:show, :index]
@@ -21,5 +22,5 @@ Rails.application.routes.draw do
 
   resources :bookmarks, only: [:index, :create, :destroy]
 
-  resources :private_messages, except: [:edit, :update]
+  resources :private_messages, only: [:show, :index]
 end

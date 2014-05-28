@@ -15,10 +15,23 @@ before_action :ensure_login!
   
   def new
     #placeholder
+    @user = User.find(params[:user_id])
+    render partial: "new_form"
   end
   
   def create
     #placeholder
+    @message = PrivateMessage.new(private_message_params)
+    @message.author = current_user
+    @message.recipient_id = params[:user_id]
+
+    if @message.save
+      flash[:notice] = "Private Message sent!"
+      redirect_to :back
+    else
+      flash[:errors] = @message.errors.full_messages
+      redirect_to :back
+    end
   end
   
   def edit
@@ -31,5 +44,9 @@ before_action :ensure_login!
   
   def destroy
     #placeholder
+  end
+  private
+  def private_message_params
+    params.require(:private_message).permit(:title, :body)
   end
 end
