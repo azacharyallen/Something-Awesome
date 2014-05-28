@@ -20,4 +20,6 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
 
   resources :bookmarks, only: [:index, :create, :destroy]
+
+  resources :private_messages, except: [:edit, :update]
 end

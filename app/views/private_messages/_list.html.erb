@@ -1,0 +1,20 @@
+<table class="table table-striped thread-table" style="margin:0;">
+  <tr>
+    <th class="text-center">Title</th>
+    <th class="text-right">Sender</th>
+    <th class="text-right">Date/Time</th>
+  </tr>
+
+  <% @messages.each do |message| %>
+  <tr>
+    <td style="width:70%; <%= "font-weight:bold;" unless message.read %>">
+      <a href="<%= private_message_url(message) %>">
+        <%= message.title %>
+      </a>
+    </td>
+    <td class="text-right"><%= message.author.username %></td>
+    <td class="text-right"><%= message.created_at.strftime("%H:%M %b %d, %Y") %></td>
+  </tr>
+  <% end -%>
+
+</table>

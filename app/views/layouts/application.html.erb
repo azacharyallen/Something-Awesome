@@ -5,11 +5,6 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
-
-<script>
-
-</script>
-
 </head>
 <body>
 
@@ -57,6 +52,7 @@
                 <p style="font-size:125%;"><%= current_user.username %></strong> <b class="caret"></b></p></a>
               <ul class="dropdown-menu">
                 <li><a href="/bookmarks">Bookmarks</a></li>
+                <li><a href="/private_messages">Private Messages</a></li>
                 <li><a href="<%= user_url(current_user) %>">Profile</a></li>
                 <li class="divider"></li>
                 <li><%= link_to 'Sign Out', '#', id: 'sign-out-button' %></li>

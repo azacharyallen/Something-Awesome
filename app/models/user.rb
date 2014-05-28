@@ -43,6 +43,8 @@ class User < ActiveRecord::Base
   has_many :bookmarked_threads, through: :bookmarks, source: :post_thread
   has_many :visits
   has_many :visited_threads, through: :visits, source: :post_thread
+  has_many :sent_messages, class_name: "PrivateMessage", foreign_key: :author_id, primary_key: :id, inverse_of: :author
+  has_many :received_messages, class_name: "PrivateMessage", foreign_key: :recipient_id, primary_key: :id, inverse_of: :recipient
 
   has_secure_password
 

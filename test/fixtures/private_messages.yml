@@ -1,0 +1,26 @@
+# == Schema Information
+#
+# Table name: private_messages
+#
+#  id           :integer          not null, primary key
+#  body         :text             not null
+#  title        :string(255)      not null
+#  author_id    :integer          not null
+#  recipient_id :integer          not null
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  body: MyText
+  title: MyString
+  author: 1
+  recipient: 1
+
+two:
+  body: MyText
+  title: MyString
+  author: 1
+  recipient: 1

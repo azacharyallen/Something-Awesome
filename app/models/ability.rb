@@ -8,16 +8,21 @@ class Ability
     if user.role == "ADMINISTRATOR"
         can :manage, :all
     elsif user.role == "MODERATOR"
-        can :read, :all
+        can :read, [Post, PostThread, Forum, Section, User]
         can [:create, :update], PostThread
         can [:create, :update], Post
         can :update, User
         can :manage, Bookmark, user_id: user.id
+        can :read, PrivateMessage, author_id: user.id
+        can :read, PrivateMessage, recipient_id: user.id
+        can :create, PrivateMessage
     elsif user.role == "USER"
-        can :read, :all
+        can :read, [Post, PostThread, Forum, Section, User]
         can :manage, Bookmark, user_id: user.id
         can :update, User, id: user.id
-
+        can :read, PrivateMessage, author_id: user.id
+        can :read, PrivateMessage, recipient_id: user.id
+        can :create, PrivateMessage
         unless user.banned
             can :create, Post
             can :create, PostThread

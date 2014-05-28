@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140528000722) do
+ActiveRecord::Schema.define(version: 20140528220152) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,19 @@ ActiveRecord::Schema.define(version: 20140528000722) do
 
   add_index "posts", ["post_thread_id"], name: "index_posts_on_post_thread_id", using: :btree
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
+
+  create_table "private_messages", force: true do |t|
+    t.text     "body",                         null: false
+    t.string   "title",                        null: false
+    t.integer  "author_id",                    null: false
+    t.integer  "recipient_id",                 null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "read",         default: false
+  end
+
+  add_index "private_messages", ["author_id"], name: "index_private_messages_on_author_id", using: :btree
+  add_index "private_messages", ["recipient_id"], name: "index_private_messages_on_recipient_id", using: :btree
 
   create_table "sections", force: true do |t|
     t.string   "name",       null: false
