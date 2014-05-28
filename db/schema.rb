@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140527214717) do
+ActiveRecord::Schema.define(version: 20140528000722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,5 +88,18 @@ ActiveRecord::Schema.define(version: 20140527214717) do
 
   add_index "users", ["session_token"], name: "index_users_on_session_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
+
+  create_table "visits", force: true do |t|
+    t.integer  "post_thread_id"
+    t.integer  "user_id"
+    t.integer  "post_id",        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "visits", ["post_id"], name: "index_visits_on_post_id", using: :btree
+  add_index "visits", ["post_thread_id", "user_id"], name: "index_visits_on_post_thread_id_and_user_id", unique: true, using: :btree
+  add_index "visits", ["post_thread_id"], name: "index_visits_on_post_thread_id", using: :btree
+  add_index "visits", ["user_id"], name: "index_visits_on_user_id", using: :btree
 
 end

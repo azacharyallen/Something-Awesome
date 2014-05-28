@@ -14,6 +14,7 @@
 #  avatar_content_type :string(255)
 #  avatar_file_size    :integer
 #  avatar_updated_at   :datetime
+#  banned              :boolean          default(FALSE)
 #
 
 class User < ActiveRecord::Base
@@ -40,6 +41,8 @@ class User < ActiveRecord::Base
   has_many :posts, inverse_of: :user
   has_many :bookmarks, inverse_of: :user
   has_many :bookmarked_threads, through: :bookmarks, source: :post_thread
+  has_many :visits
+  has_many :visited_threads, through: :visits, source: :post_thread
 
   has_secure_password
 

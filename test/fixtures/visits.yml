@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: visits
+#
+#  id             :integer          not null, primary key
+#  post_thread_id :integer
+#  user_id        :integer
+#  post_id        :integer          not null
+#  created_at     :datetime
+#  updated_at     :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  post_thread_id: 
+  user_id: 
+  post_id: 
+
+two:
+  post_thread_id: 
+  user_id: 
+  post_id: 

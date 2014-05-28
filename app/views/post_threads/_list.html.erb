@@ -1,61 +1,74 @@
-    <table class="table table-striped thread-table" style="margin:0;">
-      <tr>
-        <th></th>
-        <th>Title</th>
-        <th class="text-right">Author</th>
-        <th class="text-right">Replies</th>
-        <th class="text-right">Last Reply</th>
-      </tr>
-      <% @threads.each do |thread| %>
-        <tr>
-          <td style="width:25px; vertical-align:middle;">
-            <!-- BOOKMARK BUTTONS -->
-            <% if logged_in? %>
-              <% if @bookmarks.include?(thread.id) %>            
-              <a href="#" class="bookmark-button" data-state="marked" data-thread-id="<%= thread.id %>">
-                <span class="glyphicon glyphicon-star" style="font-size:18pt;"></span>
-              </a>
-              <% else %>
-              <a href="#" class="bookmark-button" data-state="unmarked" data-thread-id="<%= thread.id %>">
-                <span class="glyphicon glyphicon-star-empty" style="font-size:18pt;"></span>
-              </a>
-              <% end -%>
-            <% end -%>
-          </td>
-          <!-- THREAD TITLE -->
-          <td style="vertical-align:middle; max-width:550px;">
-            <a href="<%= post_thread_url(thread) %>" style="font-weight:bold;">
-              <% if thread.closed %>
-              <span class="glyphicon glyphicon-lock"></span>
-              <% end -%>
-              <%= thread.title %> 
-            </a>
-            <br>
-            <% posts = thread.posts.page(1) %>
-            <%= render  partial: "post_threads/paginator", 
-                        locals: {posts: posts, thread: thread} %>
-            </br>
-          </td>
-          <!-- THREAD AUTHOR -->
-          <td style="vertical-align:middle; text-align:right;">
-            <a href="<%= user_url(thread.user) %>">
-              <%= thread.user.username %>
-            </a>
-          </td>
-          <!-- THREAD REPLY COUNT -->
-          <td style="vertical-align:middle; text-align:right;">
-            <%= thread.posts.count %>
-          </td>
-          <!-- LAST REPLY -->
-          <td style="vertical-align:middle; text-align:right;">
-            <% last_post = thread.posts.sort_by(&:id).last %>
-            <%= last_post.created_at.strftime("%H:%M %b %d, %Y") %>
-            <br>
-              <a href="<%= user_url(last_post.user) %>"> 
-                <%= last_post.user.username %>
-              </a>
-            </br>
-          </td>
-        </tr>
-      <% end -%>
-    </table>
+<% visited_threads = @visits ? @visits.pluck(:post_thread_id) : [] %>
+
+<table class="table table-striped thread-table" style="margin:0;">
+  <tr>
+    <th></th>
+    <th>Title</th>
+    <th class="text-right">Author</th>
+    <th class="text-right">Replies</th>
+    <th class="text-right">Last Reply</th>
+  </tr>
+  <% @threads.each do |thread| %>
+    <tr>
+      <td style="width:25px; vertical-align:middle;">
+        <!-- BOOKMARK BUTTONS -->
+        <% if logged_in? %>
+          <% if @bookmarks.include?(thread.id) %>            
+          <a href="#" class="bookmark-button" data-state="marked" data-thread-id="<%= thread.id %>">
+            <span class="glyphicon glyphicon-star" style="font-size:18pt;"></span>
+          </a>
+          <% else %>
+          <a href="#" class="bookmark-button" data-state="unmarked" data-thread-id="<%= thread.id %>">
+            <span class="glyphicon glyphicon-star-empty" style="font-size:18pt;"></span>
+          </a>
+          <% end -%>
+        <% end -%>
+      </td>
+      <!-- THREAD TITLE -->
+      <td style="vertical-align:middle; max-width:550px;">
+        <div class="pull-left">
+        <a href="<%= post_thread_url(thread) %>" style="font-weight:bold;">
+          <% if thread.closed %>
+          <span class="glyphicon glyphicon-lock"></span>
+          <% end -%>
+          <%= thread.title %> 
+        </a>
+        <br>
+        <% posts = thread.posts.page(1) %>
+        <%= render  partial: "post_threads/paginator", 
+                    locals: {posts: posts, thread: thread} %>
+        </br>
+        </div>
+
+        <% if visited_threads.include?(thread.id) %>
+          <% last_post_id = @visits.where(post_thread_id: thread.id).first.post_id %>
+          <% new_post_count = thread.posts.where("id > #{last_post_id}").count %>
+
+          <div class="pull-right">
+          <a href="#" class="btn btn-sm btn-default"><%= "#{new_post_count} >" %></a>
+          </div>
+        <% end -%>
+      </td>
+      <!-- THREAD AUTHOR -->
+      <td style="vertical-align:middle; text-align:right;">
+        <a href="<%= user_url(thread.user) %>">
+          <%= thread.user.username %>
+        </a>
+      </td>
+      <!-- THREAD REPLY COUNT -->
+      <td style="vertical-align:middle; text-align:right;">
+        <%= thread.posts.count %>
+      </td>
+      <!-- LAST REPLY -->
+      <td style="vertical-align:middle; text-align:right;">
+        <% last_post = thread.posts.sort_by(&:id).last %>
+        <%= last_post.created_at.strftime("%H:%M %b %d, %Y") %>
+        <br>
+          <a href="<%= user_url(last_post.user) %>"> 
+            <%= last_post.user.username %>
+          </a>
+        </br>
+      </td>
+    </tr>
+  <% end -%>
+</table>

@@ -10,6 +10,15 @@ class PostThreadsController < ApplicationController
   def show
     @thread = PostThread.includes(forum: :section).find(params[:id])
     @posts = Post.includes(:user).where(post_thread_id: params[:id]).order(:id).page(params[:page] || 1)
+
+    if logged_in?
+      @visit = Visit.find_by_user_and_thread(current_user.id, @thread.id)
+      if @visit
+        @visit.update_attributes(post: @posts.last)
+      else
+        @visit = Visit.create!(user: current_user, post_thread: @thread, post: @posts.last)
+      end
+    end
   end
   
   def new
