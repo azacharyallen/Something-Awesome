@@ -34,6 +34,7 @@ GEM
     aws-sdk (1.41.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
+    bb-ruby (1.0.4)
     bcrypt (3.1.7)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
@@ -160,6 +161,7 @@ PLATFORMS
 DEPENDENCIES
   annotate
   aws-sdk
+  bb-ruby
   bcrypt (~> 3.1.7)
   better_errors
   binding_of_caller

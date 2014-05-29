@@ -50,6 +50,8 @@ gem 'cancan'
 
 gem 'faker'
 
+gem 'bb-ruby'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 

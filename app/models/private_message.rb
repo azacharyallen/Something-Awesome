@@ -16,4 +16,6 @@ class PrivateMessage < ActiveRecord::Base
 
   belongs_to :author, class_name: "User", foreign_key: :author_id, primary_key: :id, inverse_of: :sent_messages
   belongs_to :recipient, class_name: "User", foreign_key: :author_id, primary_key: :id, inverse_of: :received_messages
+
+  scope :unread, -> { where(read: FALSE) }
 end

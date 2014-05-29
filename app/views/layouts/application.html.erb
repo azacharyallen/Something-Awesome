@@ -48,6 +48,14 @@
     <div class="collapse navbar-collapse" id="primary-site-navbar">
         <% if logged_in? %>
           <ul class="nav navbar-nav navbar-right">
+            <% num_unread = current_user.received_messages.unread.count %>
+            <% if num_unread > 0 %>
+            <li>
+              <a href="/private_messages" class="" style="color:red;">
+                <span class="glyphicon glyphicon-envelope"></span><%= num_unread %> 
+              </a>
+            </li>
+            <% end -%>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <p style="font-size:125%;"><%= current_user.username %></strong> <b class="caret"></b></p></a>

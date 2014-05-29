@@ -15,7 +15,7 @@
                 class="form-control"
                 id="private_message_title" 
                 name="private_message[title]" 
-                value=""
+                value="<%= @message.title if @message.title %>"
                 placeholder="A Super Awesome Title!">
         </div>
       </div>
@@ -29,7 +29,7 @@
                 name="private_message[body]" 
                 value=""
                 style="height:300px;"
-                placeholder="Text can be styled with basic html tags &lt;b&gt;, &lt;i&gt;, &lt;blockquote&gt;"></textarea>
+                placeholder="Text can be styled with basic html tags &lt;b&gt;, &lt;i&gt;, &lt;blockquote&gt;"><%= @message.body if @message.body %></textarea>
         </div>
       </div>
 

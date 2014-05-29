@@ -7,14 +7,21 @@ before_action :ensure_login!
   end
   
   def show
-    @message = PrivateMessage.find(params[:id])
+    @message = PrivateMessage.includes(:author).find(params[:id])
     authorize! :read, @message, message: "You may not look at other people's private messages!"
     @message.update_attributes(read: TRUE) unless @message.read
     #placeholder
   end
   
   def new
-    #placeholder
+    @message = PrivateMessage.new
+
+    if params[:quote]
+      quoted_message = PrivateMessage.includes(:author).find(params[:quote])
+      @message.title = "Re: #{quoted_message.title}"
+      @message.body = "<blockquote><p><b><i>#{quoted_message.author.username}</b> said:</i>\n" + quoted_message.body + "</p></blockquote>\n" 
+    end
+
     @user = User.find(params[:user_id])
     render partial: "new_form"
   end

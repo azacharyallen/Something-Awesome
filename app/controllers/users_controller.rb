@@ -32,6 +32,9 @@ class UsersController < ApplicationController
     if @user.save
       login!(@user)
       flash[:notice] = "Welcome to the forums, #{@user.username}!"
+
+      send_welcome_pm
+
       redirect_to root_url
     else
       flash.now[:errors] = @user.errors.full_messages
@@ -65,12 +68,20 @@ class UsersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:username, :avatar, :profile, :password, :password_confirmation)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def user_params
+    params.require(:user).permit(:username, :avatar, :profile, :password, :password_confirmation)
+  end
+
+  def send_welcome_pm
+    PrivateMessage.create!( title: "Welcome to the forums!", 
+                            body:  "Welcome to the Something Awesome Forums!\n\n
+                                    We're super exited to have you here.",
+                            author_id: 1,
+                            recipient_id: current_user.id)
+  end
 end

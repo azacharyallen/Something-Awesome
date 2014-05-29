@@ -17,12 +17,13 @@ before_action :ensure_login!, except: [:show, :index]
   
   def new
     authorize! :create, Post
-    @post = Post.new()
+    @post = Post.new
     @thread = params[:post_thread_id]
 
     if params[:quote]
-      quoted_post = Post.find(params[:quote])
-      @post.body = "<blockquote><p><b><i>#{quoted_post.user.username}</b> said:</i>\n" + quoted_post.body + "</p></blockquote>\n" 
+      quoted_post = Post.includes(:user).find(params[:quote])
+      # @post.body = "[quote]\n" + quoted_post.username + " said:\n" + quoted_post.body + "\n[/quote]"
+      @post.body = "[quote]\n" + "[b]" + quoted_post.user.username + "[/b]" + " said:\n" + quoted_post.body + "\n[/quote]"
     end
     
     render partial: "new_form"
