@@ -73,6 +73,10 @@ a:hover {
 	background-color: rgb(210,210,210) !important;
 }
 
+.breadcrumb-table tr {
+	background-color: $breadcrumb-bg;
+}
+
 .avatar_image {
 	max-width: 150px;
 }
