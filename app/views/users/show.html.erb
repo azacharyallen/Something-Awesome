@@ -18,7 +18,10 @@
     <div style="min-height:20px;"></div>
     <div style="text-align:center;">
 
-    <a href="#" class="btn btn-default btn-sm">
+    <a  href="<%= new_user_private_message_url(@user) %>" 
+        class="btn btn-default btn-sm <%= "disabled" unless logged_in? %>"
+        data-toggle="modal"
+        data-target="#pmModal">
       <span class="glyphicon glyphicon-envelope"></span>
     </a>
 

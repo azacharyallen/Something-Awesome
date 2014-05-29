@@ -25,15 +25,15 @@ class User < ActiveRecord::Base
   validates :username, :session_token, presence: true
   validates :username, :session_token, uniqueness: true
   validates :role, inclusion: {in: %w(USER MODERATOR ADMINISTRATOR)}
-
   validates_length_of :password, minimum: 6, allow_nil: true
-
-  validates_attachment :avatar,
-  :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] }
+  validates_attachment  :avatar,
+                        :content_type => { :content_type => [ "image/jpeg", 
+                                                              "image/gif", 
+                                                              "image/png" ] }
 
   validates_attachment_size :avatar, :less_than => 100.kilobytes
 
-  validate :image_dimensions
+  validate :image_dimensions, unless: "errors.any?"
 
   before_validation :ensure_session_token;
 
@@ -43,8 +43,17 @@ class User < ActiveRecord::Base
   has_many :bookmarked_threads, through: :bookmarks, source: :post_thread
   has_many :visits
   has_many :visited_threads, through: :visits, source: :post_thread
-  has_many :sent_messages, class_name: "PrivateMessage", foreign_key: :author_id, primary_key: :id, inverse_of: :author
-  has_many :received_messages, class_name: "PrivateMessage", foreign_key: :recipient_id, primary_key: :id, inverse_of: :recipient
+  has_many  :sent_messages, 
+            class_name: "PrivateMessage", 
+            foreign_key: :author_id, 
+            primary_key: :id, 
+            inverse_of: :author
+
+  has_many  :received_messages, 
+            class_name: "PrivateMessage", 
+            foreign_key: :recipient_id, 
+            primary_key: :id, 
+            inverse_of: :recipient
 
   has_secure_password
 

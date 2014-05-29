@@ -19,7 +19,7 @@ before_action :ensure_login!
     if params[:quote]
       quoted_message = PrivateMessage.includes(:author).find(params[:quote])
       @message.title = "Re: #{quoted_message.title}"
-      @message.body = "<blockquote><p><b><i>#{quoted_message.author.username}</b> said:</i>\n" + quoted_message.body + "</p></blockquote>\n" 
+      @message.body = "[quote][b]#{quoted_message.author.username}[/b] said:[i]\n" + quoted_message.body + "\n[/i][/quote]" 
     end
 
     @user = User.find(params[:user_id])

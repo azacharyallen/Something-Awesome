@@ -58,7 +58,9 @@
                       class="form-control"
                       id="user_avatar" 
                       name="user[avatar]">
-              Avatar image must have dimensions less/equal to 150px and be less than 100KB in size
+              <p class="help-block">
+                Must be a png, gif, or jpg.  Max dimensions of 150px and max size of 100KB
+              </p>
             </div>
           </div>
 
@@ -71,11 +73,12 @@
                         name="user[password]" 
                         value=""
                         placeholder="password">
+                <p class="help-block">Password must be at least six characters long</p>
               </div>
           </div>
 
           <div class="form-group">
-            <label  for="user_password_confirmation" class="control-label col-xs-2">Confirm your Password</label>
+            <label  for="user_password_confirmation" class="control-label col-xs-2"></label>
             <div class="col-xs-10">
             <input  type="password" 
                     class="form-control"
@@ -88,7 +91,7 @@
 
           <div class="form-group">
             <div class="col-xs-offset-2 col-xs-10">
-            <input type="submit" class="btn btn-primary" value="Sign Up">
+            <input type="submit" class="btn btn-primary pull-right" value="Sign Up">
           </div>
           </div>
         </form>
