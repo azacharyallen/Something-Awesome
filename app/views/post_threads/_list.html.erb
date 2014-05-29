@@ -1,6 +1,6 @@
 <% visited_threads = @visits ? @visits.pluck(:post_thread_id) : [] %>
 
-<table class="table table-striped thread-table" style="margin:0;">
+<table class="table table-striped thread-table">
   <tr>
     <th></th>
     <th>Title</th>
@@ -11,22 +11,22 @@
   </tr>
   <% @threads.each do |thread| %>
     <tr>
-      <td style="width:25px; vertical-align:middle;">
+      <td class="thread-bookmark-td">
         <!-- BOOKMARK BUTTONS -->
         <% if logged_in? %>
           <% if @bookmarks.include?(thread.id) %>            
           <a href="#" class="bookmark-button" data-state="marked" data-thread-id="<%= thread.id %>">
-            <span class="glyphicon glyphicon-star" style="font-size:18pt;"></span>
+            <span class="glyphicon glyphicon-star"></span>
           </a>
           <% else %>
           <a href="#" class="bookmark-button" data-state="unmarked" data-thread-id="<%= thread.id %>">
-            <span class="glyphicon glyphicon-star-empty" style="font-size:18pt;"></span>
+            <span class="glyphicon glyphicon-star-empty"></span>
           </a>
           <% end -%>
         <% end -%>
       </td>
       <!-- THREAD TITLE -->
-      <td style="vertical-align:middle; max-width:550px;">
+      <td class="thread-title-td">
         <div class="pull-left">
           <a href="<%= post_thread_url(thread) %>" style="font-weight:bold;">
             <% if thread.closed %>
@@ -42,7 +42,7 @@
         </div>
         <!-- UNREAD POST COUNT & LINK TO LAST READ -->
       </td>
-      <td style="vertical-align:middle;">
+      <td class="thread-unread-td">
         <% if visited_threads.include?(thread.id) %>
 
           <div class="pull-right">
@@ -51,17 +51,17 @@
         <% end -%>
       </td>
       <!-- THREAD AUTHOR -->
-      <td style="vertical-align:middle; text-align:right;">
+      <td class="thread-author-td">
         <a href="<%= user_url(thread.user) %>">
           <%= thread.user.username %>
         </a>
       </td>
       <!-- THREAD REPLY COUNT -->
-      <td style="vertical-align:middle; text-align:right;">
+      <td class="thread-reply-count-td">
         <%= thread.posts.count %>
       </td>
       <!-- LAST REPLY -->
-      <td style="vertical-align:middle; text-align:right;">
+      <td class="thread-last-reply-td">
         <% last_post = thread.posts.sort_by(&:id).last %>
         <%= last_post.created_at.strftime("%H:%M %b %d, %Y") %>
         <br>

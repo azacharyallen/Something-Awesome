@@ -10,18 +10,7 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-xs-10 col-xs-offset-1">
-    <ol class="breadcrumb">
-      <li><a href="/">Home</a></li>
-      <li><a href="<%= section_url(@forum.section) %>"><%= @forum.section.name %></a></li>
-      <li class="active"><%= @forum.name %></li>
-      <div class="pull-right">
-      <%= paginate @threads  %>
-      </div>
-    </ol>
-  </div>
-</div>
+<%= render partial: "breadcrumb" %>
 
 <div class="row">
   <div class="col-xs-10 col-xs-offset-1">
@@ -78,15 +67,5 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-xs-10 col-xs-offset-1">
-    <ol class="breadcrumb">
-      <li><a href="/">Home</a></li>
-      <li><a href="<%= section_url(@forum.section) %>"><%= @forum.section.name %></a></li>
-      <li class="active"><%= @forum.name %></li>
-      <div class="pull-right">
-      <%= paginate @threads  %>
-      </div>
-    </ol>
-  </div>
-</div>
+<%= render partial: "breadcrumb" %>
+
