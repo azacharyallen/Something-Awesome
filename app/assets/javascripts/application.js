@@ -67,12 +67,13 @@
       });
     });
 
-    $('.bookmark-button').click(function(event){
+    $('body').on('click', '.bookmark-button', function(event){
       event.preventDefault();
       // alert("Bookmarking a thread!");
       var state = event.currentTarget.dataset.state;
       var targetThread = event.currentTarget.dataset.threadId;
-      
+      $(event.target.parentElement).toggleClass("disabled");
+
       if (state === "unmarked") {
         $.ajax({
           url: "/bookmarks",
@@ -84,6 +85,9 @@
           },
           error: function(response){
             alert("Oh No!");
+          },
+          complete: function(response){
+            $(event.target.parentElement).toggleClass("disabled");
           },
         });
       } else {
@@ -97,26 +101,11 @@
         error: function(response){
           alert("Oh No!");
         },
+        complete: function(response){
+          $(event.target.parentElement).toggleClass("disabled");
+        },
       });
       }
-    });
-
-    $('.unbookmark-button').click(function(event){
-      event.preventDefault();
-      // alert("Bookmarking a thread!");
-      var targetThread = event.currentTarget.dataset.threadId;
-      alert("UNBOOKMARKING");
-      $.ajax({
-        url: "/bookmarks/" + targetThread,
-        method: "DELETE",
-        success: function(response){
-          $(event.target).toggleClass("glyphicon-star-empty glyphicon-star");
-          $(event.target.parentElement).toggleClass("unbookmark-button bookmark-button");
-        },
-        error: function(response){
-          alert("Oh No!");
-        },
-      });
     });
 
     $('.close-thread-button').click(function(event){
