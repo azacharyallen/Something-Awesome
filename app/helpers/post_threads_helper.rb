@@ -13,6 +13,11 @@ module PostThreadsHelper
     page = ((post_ids.index(first_unread_post_id) + 1) / 25.to_f).ceil
     query_string = "?page=#{page}#post-#{first_unread_post_id}"
 
-    link = "<a href='" + post_thread_url(thread) + query_string + "' class='btn btn-sm btn-default'>" + new_post_count.to_s + " ></a>"
+    link = "<a href='" + 
+            post_thread_url(thread) + 
+            query_string + 
+            "' class='btn btn-sm btn-default'>" + 
+            new_post_count.to_s + 
+            " ></a>"
   end
 end

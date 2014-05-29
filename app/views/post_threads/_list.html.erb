@@ -4,6 +4,7 @@
   <tr>
     <th></th>
     <th>Title</th>
+    <th></th>
     <th class="text-right">Author</th>
     <th class="text-right">Replies</th>
     <th class="text-right">Last Reply</th>
@@ -27,19 +28,21 @@
       <!-- THREAD TITLE -->
       <td style="vertical-align:middle; max-width:550px;">
         <div class="pull-left">
-        <a href="<%= post_thread_url(thread) %>" style="font-weight:bold;">
-          <% if thread.closed %>
-          <span class="glyphicon glyphicon-lock"></span>
-          <% end -%>
-          <%= thread.title %> 
-        </a>
-        <br>
-        <% posts = thread.posts.page(1) %>
-        <%= render  partial: "post_threads/paginator", 
-                    locals: {posts: posts, thread: thread} %>
-        </br>
+          <a href="<%= post_thread_url(thread) %>" style="font-weight:bold;">
+            <% if thread.closed %>
+            <span class="glyphicon glyphicon-lock"></span>
+            <% end -%>
+            <%= thread.title %> 
+          </a>
+          <br>
+          <% posts = thread.posts.page(1) %>
+          <%= render  partial: "post_threads/paginator", 
+                      locals: {posts: posts, thread: thread} %>
+          </br>
         </div>
         <!-- UNREAD POST COUNT & LINK TO LAST READ -->
+      </td>
+      <td style="vertical-align:middle;">
         <% if visited_threads.include?(thread.id) %>
 
           <div class="pull-right">
