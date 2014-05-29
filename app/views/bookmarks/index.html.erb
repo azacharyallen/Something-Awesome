@@ -1,5 +1,8 @@
 <% content_for(:title, 'Bookmarks')%>
 
+<% visited_threads = @visits ? @visits.pluck(:post_thread_id) : [] %>
+
+
 <div class="row">
   <div class="col-xs-10 col-xs-offset-1">
 
