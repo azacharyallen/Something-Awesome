@@ -143,6 +143,8 @@
 
     $('blockquote').toggleClass("well well-lg");
 
+    $('.page.current').parent().toggleClass('disabled');
+
     $('body').on('hidden.bs.modal', '.modal', function () {
       $(this).removeData('bs.modal');
     });

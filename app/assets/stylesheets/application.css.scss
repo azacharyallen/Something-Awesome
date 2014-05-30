@@ -92,8 +92,8 @@ a:hover {
 	color:inherit;
 }
 
-.pagination a {
-	color:inherit;
+.pagination span a {
+	color:black;
 }
 
 .bookmark-button {
@@ -197,10 +197,6 @@ ul.pagination {
 	border-top:black 2px solid !important; 
 	border-bottom:black 2px solid !important; 
 	vertical-align:middle !important;
-}
-
-.forum-header-footer span {
-	color:black !important;
 }
 
 blockquote {
