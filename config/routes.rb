@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   resources :bookmarks, only: [:index, :create, :destroy]
 
-  resources :private_messages, only: [:show, :index]
+  resources :private_messages, only: [:show, :index, :destroy]
 
   get "/about", to: "static_pages#about"
 end

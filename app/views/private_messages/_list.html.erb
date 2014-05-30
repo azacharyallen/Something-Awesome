@@ -1,5 +1,6 @@
 <table class="table table-striped thread-table" style="margin:0;">
   <tr>
+    <th></th>
     <th class="text-center">Title</th>
     <th class="text-right">Sender</th>
     <th class="text-right">Date/Time</th>
@@ -7,7 +8,14 @@
 
   <% @messages.each do |message| %>
   <tr>
-    <td style="width:70%; <%= "font-weight:bold;" unless message.read %>">
+    <td style="vertical-align:middle;">
+      <a  href="#"
+          class="pm-delete-button"
+          data-id="<%= message.id %>">
+        <span style="color:black;" class='glyphicon glyphicon-trash'></span>
+      </a>
+    </td>
+    <td style="width:60%; <%= "font-weight:bold;" unless message.read %>">
       <a href="<%= private_message_url(message) %>">
         <%= message.title %>
       </a>

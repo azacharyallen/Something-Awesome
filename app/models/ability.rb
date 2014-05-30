@@ -16,6 +16,7 @@ class Ability
         can :read, PrivateMessage, author_id: user.id
         can :read, PrivateMessage, recipient_id: user.id
         can :create, PrivateMessage
+        can :destroy, PrivateMessage, recipient_id: user.id
     elsif user.role == "USER"
         can :read, [Post, PostThread, Forum, Section, User]
         can :manage, Bookmark, user_id: user.id
@@ -23,6 +24,7 @@ class Ability
         can :read, PrivateMessage, author_id: user.id
         can :read, PrivateMessage, recipient_id: user.id
         can :create, PrivateMessage
+        can :destroy, PrivateMessage, recipient_id: user.id
         unless user.banned
             can :create, Post
             can :create, PostThread

@@ -51,6 +51,12 @@ before_action :ensure_login!
   
   def destroy
     #placeholder
+    @message = PrivateMessage.find(params[:id])
+    authorize! :destroy, @message, message: "You can't delete someone else's messages!"
+
+    @message.try(:destroy)
+
+    redirect_to private_messages_url
   end
   private
   def private_message_params

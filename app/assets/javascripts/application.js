@@ -15,6 +15,7 @@
 //= require bootstrap
 //= require serializeJSON
 //= require jquery.bootstrap-growl.min
+//= require bootbox.min
 //= require_tree .
 
   function displayError(message) {
@@ -100,7 +101,6 @@
     });
 
     $('body').on('click', '.bookmark-button', function(event){
-      console.log("click!");
       event.preventDefault();
       $(event.target.parentElement).prop('disabled', true);
       $(event.target.parentElement).toggleClass("disabled");
@@ -145,6 +145,27 @@
       });
       }
     });
+
+    $('body').on('click', '.pm-delete-button', function(event){
+      event.preventDefault();
+      $(event.target.parentElement).prop('disabled', true);
+      var targetPM = event.currentTarget.dataset.id;
+
+      bootbox.confirm("Are you sure?  Deleted PMs are gone FOREVER.", function(result){
+        if (result){
+          $.ajax({
+            url: "/private_messages/" + targetPM,
+            method: "DELETE",
+            complete: function(response){
+              location.reload(true);
+            }
+          });
+        } else {
+          $(event.target.parentElement).prop('disabled', false);
+        }
+      });
+    });
+
 
     $('.close-thread-button').click(function(event){
       event.preventDefault();
