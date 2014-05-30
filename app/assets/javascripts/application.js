@@ -61,11 +61,12 @@
         method: "POST",
         data: loginData,
         success: function(response){
-          location.reload(true);
-        },
-        error: function(response){
-          $('#login-form').trigger("reset");
-          displayError("Invalid Username and/or Password");
+          if (response.success) {
+            location.reload(true);
+          } else {
+            $('#login-form').trigger("reset");
+            displayError("Invalid Username and/or Password");
+          }
         },
       });
     });

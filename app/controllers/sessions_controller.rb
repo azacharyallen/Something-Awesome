@@ -29,9 +29,9 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       login!(user)
       flash[:notice] = "Welcome back, #{user.username}"
-      head :ok
+      render json: {success: true}
     else
-      head 400
+      render json: {success: false}
     end
   end
   
