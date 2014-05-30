@@ -67,11 +67,13 @@
     });
 
     $('body').on('click', '.bookmark-button', function(event){
+      console.log("click!");
       event.preventDefault();
+      $(event.target.parentElement).prop('disabled', true);
+      $(event.target.parentElement).toggleClass("disabled");
       // alert("Bookmarking a thread!");
       var state = event.currentTarget.dataset.state;
       var targetThread = event.currentTarget.dataset.threadId;
-      $(event.target.parentElement).toggleClass("disabled");
 
       if (state === "unmarked") {
         $.ajax({
@@ -86,6 +88,7 @@
             alert("Oh No!");
           },
           complete: function(response){
+            $(event.target.parentElement).prop('disabled', false);
             $(event.target.parentElement).toggleClass("disabled");
           },
         });
@@ -101,6 +104,7 @@
           alert("Oh No!");
         },
         complete: function(response){
+          $(event.target.parentElement).prop('disabled', false);
           $(event.target.parentElement).toggleClass("disabled");
         },
       });
