@@ -36,7 +36,7 @@ body {
 .pagination-td {
 	text-align:right;
 	vertical-align:middle !important;
-	width:200px;
+	width:350px;
 }
 
 .table-striped>tbody>tr:nth-child(even)>td{
@@ -178,6 +178,29 @@ a:hover {
 
 .avatar_image {
 	max-width: 150px;
+}
+
+ul.pagination {
+	margin:0;
+}
+
+.thread-controls-table td {
+	vertical-align:middle !important;
+}
+
+.forum-header-footer td.side {
+	width:100px !important;
+}
+
+.forum-header-footer td {
+	background-color:rgb(53,72,80) !important; 
+	border-top:black 2px solid !important; 
+	border-bottom:black 2px solid !important; 
+	vertical-align:middle !important;
+}
+
+.forum-header-footer span {
+	color:black !important;
 }
 
 blockquote {

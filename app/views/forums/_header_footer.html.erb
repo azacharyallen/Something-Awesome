@@ -1,0 +1,21 @@
+<table class="table table-striped forum-header-footer" style="margin:0;">
+  <tr>
+    <td class="side">
+    </td>
+
+    <td class="middle text-center">
+      <%= paginate @threads, window: 2  %>
+    </td>
+
+    <td class="side">
+      <% if logged_in? && (can? :create, PostThread) %>
+        <a  href="<%=new_forum_post_thread_url(@forum)%>" 
+            class="btn btn-default btn-small pull-right"
+            data-toggle="modal"
+            data-target="#threadModal">
+          <span class="glyphicon glyphicon-pencil"></span> Post
+        </a>
+      <% end -%>
+    </td>
+  </tr>
+</table>

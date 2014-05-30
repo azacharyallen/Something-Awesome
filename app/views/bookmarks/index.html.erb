@@ -6,10 +6,9 @@
     <ol class="breadcrumb">
       <li><a href="/">Home</a></li>
       <li class="active">Bookmarks</li>
-      <div class="pull-right">
-      <%= paginate @threads  %>
-    </div>
     </ol>
+
+    <%= render partial: "header_footer" %>
 
     <% if @threads.empty? %>
       <h1 class="jumbotron text-center">You have no bookmarks, how sad :( </h1>
@@ -17,12 +16,11 @@
       <%= render partial: "post_threads/list" %>
     <% end -%>
     
+    <%= render partial: "header_footer" %>
+
     <ol class="breadcrumb">
       <li><a href="/">Home</a></li>
       <li class="active">Bookmarks</li>
-      <div class="pull-right">
-      <%= paginate @threads  %>
-    </div>
     </ol>
 
   </div>

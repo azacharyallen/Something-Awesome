@@ -7,17 +7,19 @@
     paginator:     the paginator that renders the pagination tags inside
 -%>
 <%= paginator.render do -%>
-  <nav class="pagination" style="margin:0; margin-right:10px;">
-    <%= first_page_tag unless current_page.first? %>
-    <%= prev_page_tag unless current_page.first? %>
+  <nav class="pagination" style="margin:0;">
+    <ul class="pagination">
+    <li><%= first_page_tag unless current_page.first? %></li>
+    <li><%= prev_page_tag unless current_page.first? %></li>
     <% each_page do |page| -%>
       <% if page.left_outer? || page.right_outer? || page.inside_window? -%>
-        <%= page_tag page %>
+        <li><%= page_tag page %></li>
       <% elsif !page.was_truncated? -%>
-        <%= gap_tag %>
+        <!-- <li><%#= gap_tag %></li> -->
       <% end -%>
     <% end -%>
-    <%= next_page_tag unless current_page.last? %>
-    <%= last_page_tag unless current_page.last? %>
+    <li><%= next_page_tag unless current_page.last? %></li>
+    <li><%= last_page_tag unless current_page.last? %></li>
+  </ul>
   </nav>
 <% end -%>

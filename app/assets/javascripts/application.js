@@ -26,7 +26,6 @@
     } else {
       $('body').prepend($error);
     }
-
   }
 
   function displayMessage(message) {

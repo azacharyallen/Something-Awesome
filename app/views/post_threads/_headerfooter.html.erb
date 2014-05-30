@@ -1,33 +1,40 @@
-    <table class="table table-striped" style="margin:0;">
+    <table class="table table-striped thread-controls-table" style="margin:0;">
       <tr>
-        <td colspan="2" style="background-color:rgb(53,72,80); border-top:black 2px solid; border-bottom:black 2px solid;">
+        <td class="text-left" style="background-color:rgb(53,72,80); border-top:black 2px solid; border-bottom:black 2px solid;">
 
-          <% if @thread.closed %>
-            <a href="#" class="btn btn-default btn-sm pull-right disabled">
-              <span class="glyphicon glyphicon glyphicon-lock"></span> Closed 
-            </a>
-
-            <% if logged_in? && (can? :update, @thread) %>
+          <% if logged_in? && (can? :update, @thread) %>
+            <% if @thread.closed %>
               <a  href="#" 
                   class="bnt btn-default btn-sm pull-left open-thread-button" 
                   data-id="<%= @thread.id %>">
                 <span class="glyphicon glyphicon-ok"></span> Re-Open
               </a>
-            <% end -%>
-
-          <% elsif logged_in? && (can? :create, Post) %>
-            <a  href="<%= new_post_thread_post_url(@thread)%>" 
-                class="btn btn-default btn-sm pull-right reply-button" 
-                data-toggle="modal" 
-                data-target="#replyModal">
-              <span class="glyphicon glyphicon-pencil"></span> Reply
-            </a>
-
-            <% if (can? :update, @thread) %>
+            <% else -%>
               <a  href="#" 
                   class="bnt btn-default btn-sm pull-left close-thread-button" 
                   data-id="<%= @thread.id %>">
                 <span class="glyphicon glyphicon-remove"></span> Close
+              </a>
+            <% end -%>
+          <% end -%>
+        </td>
+
+        <td class="text-center" style="background-color:rgb(53,72,80); border-top:black 2px solid; border-bottom:black 2px solid;">
+          <%= paginate @posts, :window => 2 %>
+        </td>
+
+        <td class="text-right" style="background-color:rgb(53,72,80); border-top:black 2px solid; border-bottom:black 2px solid;">
+          <% if logged_in? %>
+            <% if @thread.closed %>
+              <a href="#" class="btn btn-default btn-sm pull-right disabled">
+                <span class="glyphicon glyphicon glyphicon-lock"></span> Closed 
+              </a>
+            <% elsif (can? :create, Post) %>
+              <a  href="<%= new_post_thread_post_url(@thread)%>" 
+                  class="btn btn-default btn-sm pull-right reply-button" 
+                  data-toggle="modal" 
+                  data-target="#replyModal">
+                <span class="glyphicon glyphicon-pencil"></span> Reply
               </a>
             <% end -%>
           <% end -%>
