@@ -65,6 +65,7 @@
             location.reload(true);
           } else {
             $('#login-form').trigger("reset");
+            $('#sign-in-username-input').trigger("focus");
             displayError("Invalid Username and/or Password");
           }
         },
