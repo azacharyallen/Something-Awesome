@@ -114,7 +114,7 @@
           method: "POST",
           data: {bookmark: {post_thread_id: targetThread}},
           success: function(response){
-            $.bootstrapGrowl("Bookmark Added!");
+          $.bootstrapGrowl("Bookmark Added!", {width: "auto"});
             $(event.target).toggleClass("glyphicon-star-empty glyphicon-star");
             $(event.target.parentElement).attr("data-state", "marked");
           },
@@ -131,7 +131,7 @@
         url: "/bookmarks/" + targetThread,
         method: "DELETE",
         success: function(response){
-          $.bootstrapGrowl("Bookmark Removed!");
+          $.bootstrapGrowl("Bookmark Removed!", {width: "auto"});
           $(event.target).toggleClass("glyphicon-star-empty glyphicon-star");
           $(event.target.parentElement).attr("data-state", "unmarked");
         },

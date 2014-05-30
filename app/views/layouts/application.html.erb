@@ -59,7 +59,7 @@
               </a>
             </li>
             <% end -%>
-            <li class="dropdown">
+            <li class="dropdown" id="user-dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <p style="font-size:125%;"><%= current_user.username %></strong> <b class="caret"></b></p></a>
               <ul class="dropdown-menu">
@@ -87,7 +87,7 @@
 <!-- ABOUT -->
 
 <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <!-- INJECT ABOUT PAGE HERE -->
     </div>
