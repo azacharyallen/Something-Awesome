@@ -1,6 +1,6 @@
     <table class="table table-striped thread-controls-table" style="margin:0;">
       <tr>
-        <td class="text-left" style="background-color:rgb(53,72,80); border-top:black 2px solid; border-bottom:black 2px solid;">
+        <td class="text-left" style="background-color:rgb(53,72,80); border-top:black 2px solid; border-bottom:black 2px solid; min-width:100px;">
 
           <% if logged_in? && (can? :update, @thread) %>
             <% if @thread.closed %>
@@ -23,7 +23,7 @@
           <%= paginate @posts, :window => 2 %>
         </td>
 
-        <td class="text-right" style="background-color:rgb(53,72,80); border-top:black 2px solid; border-bottom:black 2px solid;">
+        <td class="text-right" style="background-color:rgb(53,72,80); border-top:black 2px solid; border-bottom:black 2px solid; min-width:100px;">
           <% if logged_in? %>
             <% if @thread.closed %>
               <a href="#" class="btn btn-default btn-sm pull-right disabled">
