@@ -48,11 +48,14 @@
     <div class="collapse navbar-collapse" id="primary-site-navbar">
         <% if logged_in? %>
           <ul class="nav navbar-nav navbar-right">
+            <!-- PRIVATE MESSAGE NOTIFICATION HERE -->
             <% num_unread = current_user.received_messages.unread.count %>
             <% if num_unread > 0 %>
             <li>
-              <a href="/private_messages" class="" style="color:red;">
-                <span class="glyphicon glyphicon-envelope"></span><%= num_unread %> 
+              <a href="/private_messages" class="unread-messages-badge">
+                <span class="badge" style="background-color:red;">
+                  <span class="glyphicon glyphicon-envelope"></span><%= "  #{num_unread}" %>
+                </span>
               </a>
             </li>
             <% end -%>

@@ -12,7 +12,7 @@
         <%= message.title %>
       </a>
     </td>
-    <td class="text-right"><%= message.author.username %></td>
+    <td class="text-right"><%= link_to message.author.username, user_url(message.author) %></td>
     <td class="text-right"><%= message.created_at.strftime("%H:%M %b %d, %Y") %></td>
   </tr>
   <% end -%>

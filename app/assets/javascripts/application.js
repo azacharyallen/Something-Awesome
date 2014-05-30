@@ -27,6 +27,8 @@
     } else {
       $('body').prepend($error);
     }
+
+    setAlertTimers();
   }
 
   function displayMessage(message) {
@@ -35,9 +37,22 @@
     <strong>"+ message + "</strong></div>";
 
     $('body').prepend($message);
+
+    setAlertTimers();
+  }
+
+  function setAlertTimers(){
+    window.setTimeout(function() {
+      $(".alert").fadeTo(500, 0).slideUp(500, function(){
+          $(this).remove();
+      });
+    }, 5000);
   }
 
   $(document).ready(function(){
+
+    setAlertTimers();
+
     $('#login-form').submit(function(event){
       event.preventDefault();
       var loginData = $(event.target).serializeJSON();
