@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require serializeJSON
+//= require jquery.bootstrap-growl.min
 //= require_tree .
 
   function displayError(message) {
@@ -81,6 +82,7 @@
           method: "POST",
           data: {bookmark: {post_thread_id: targetThread}},
           success: function(response){
+            $.bootstrapGrowl("Bookmark Added!");
             $(event.target).toggleClass("glyphicon-star-empty glyphicon-star");
             $(event.target.parentElement).attr("data-state", "marked");
           },
@@ -97,6 +99,7 @@
         url: "/bookmarks/" + targetThread,
         method: "DELETE",
         success: function(response){
+          $.bootstrapGrowl("Bookmark Removed!");
           $(event.target).toggleClass("glyphicon-star-empty glyphicon-star");
           $(event.target.parentElement).attr("data-state", "unmarked");
         },
