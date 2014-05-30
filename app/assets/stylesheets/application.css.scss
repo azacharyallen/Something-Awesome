@@ -203,6 +203,37 @@ ul.pagination {
 	color:red !important;
 }
 
+.giant-info-button {
+	font-size:500%;
+	color:white;
+}
+
+.giant-info-button:hover {
+	color:grey;
+}
+
+#giant-info-button-wrapper {
+  left: 450px;
+  position: absolute;
+  margin-left: 35px;
+  width: 280px;
+}
+
+#giant-info-button {
+  position: absolute;
+  top: 0;
+  /* just used to show how to include the margin in the effect */
+  margin-top: 75px;
+  margin-left: 75px;
+}
+
+#giant-info-button.fixed {
+  position: fixed;
+  top: 0;
+  margin-left: 75px;
+
+}
+
 blockquote {
 	font-size:inherit;
 	border:0;

@@ -83,18 +83,36 @@
   </div> <!-- container-fluid -->
 </nav> <!-- navbar -->
 
+
+<!-- ABOUT -->
+
+<div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- INJECT ABOUT PAGE HERE -->
+    </div>
+  </div>
+</div>
+
+<div id="giant-info-button">
+  <a  href="<%= about_url %>" 
+      data-toggle="modal"
+      data-target="#aboutModal">
+    <span class="glyphicon glyphicon-info-sign giant-info-button"></span>
+  </a>
+</div>
+
 <!-- CONTENT GOES HERE -->
 <div class="container">
 
   <div class="modal fade" id="pmModal" tabindex="-1" role="dialog" aria-labelledby="pmModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-
         <!-- INJECT POST FORMS HERE -->
-
       </div>
     </div>
   </div>
+
 
   <%= yield %>
 

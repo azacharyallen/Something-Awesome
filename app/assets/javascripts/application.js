@@ -53,6 +53,21 @@
 
     setAlertTimers();
 
+    var top = $('#giant-info-button').offset().top - parseFloat($('#giant-info-button').css('marginTop').replace(/auto/, 0));
+    $(window).scroll(function (event) {
+      // what the y position of the scroll is
+      var y = $(this).scrollTop();
+
+      // whether that's below the form
+      if (y >= top) {
+        // if so, ad the fixed class
+        $('#giant-info-button').addClass('fixed');
+      } else {
+        // otherwise remove it
+        $('#giant-info-button').removeClass('fixed');
+      }
+    });
+
     $('#login-form').submit(function(event){
       event.preventDefault();
       var loginData = $(event.target).serializeJSON();
@@ -133,7 +148,6 @@
 
     $('.close-thread-button').click(function(event){
       event.preventDefault();
-      // alert("Closing thread!");
       var id = event.currentTarget.dataset.id;
       $.ajax({
         url: "/post_threads/" + id,
@@ -150,7 +164,6 @@
 
     $('.open-thread-button').click(function(event){
       event.preventDefault();
-      // alert("Closing thread!");
       var id = event.currentTarget.dataset.id;
       $.ajax({
         url: "/post_threads/" + id,
